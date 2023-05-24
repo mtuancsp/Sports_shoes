@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     
@@ -17,19 +18,19 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" width="125px"></a>
+                    <a href="index.jsp"><img src="images/logo.png" width="125px"></a>
                 </div>
                  <nav>
                     <ul id="MenuItems">
-                        <li><a href="index.html">Home</a></li>
-                         <li><a href="products.html">Products</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                         <li><a href="products.jsp">Products</a></li>
                          <li><a href="">About</a></li>
                          <li><a href="">Contact</a></li>
-                         <li><a href="account.html">Account</a></li>
+                         <li><a href="account.jsp">Account</a></li>
 
                     </ul>
                 </nav>
-                <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+                <a href="cart.jsp"><img src="images/cart.png" width="30px" height="30px"></a>
                 <img src="images/menu.png" class="menu-icon" onClick="menutoggle()" >
             </div>
            

@@ -24,7 +24,6 @@ create table users
         unique (username)
 );
 
-
 create table categories
 (
     category_id   smallint unsigned not null

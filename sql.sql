@@ -53,6 +53,7 @@ create table products
         foreign key (user_id) references users (user_id)
 );
 
+
 create table addresses
 (
     address_id int auto_increment

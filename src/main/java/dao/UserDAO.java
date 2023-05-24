@@ -29,7 +29,8 @@ public class UserDAO {
                 Date birthday = resultSet.getDate("birthday");
                 String avatar_path = resultSet.getString("avatar_path");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
-               users.add(new Users(user_id,username,password,phone,email,role,full_name,birthday,avatar_path,created_at));
+                String status = resultSet.getString("status");
+               users.add(new Users(user_id,username,password,phone,email,role,full_name,birthday,avatar_path,created_at,status));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

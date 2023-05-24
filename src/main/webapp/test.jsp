@@ -55,14 +55,32 @@
   <table border="1" cellpadding="5" align="center">
     <tr>
       <th>ID</th>
-      <th>Name</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Phone</th>
       <th>Email</th>
-      <th>Country</th>
+      <th>Role</th>
+      <th>Full Name</th>
+      <th>Birthday</th>
+      <th>Avatar</th>
+      <th>Created At</th>
+      <th>Status</th>
       <th colspan="2">Actions</th>
     </tr>
     <c:forEach var="user" items="${listUser}">
       <tr>
+        <td>${user.user_id}</td>
         <td>${user.username}</td>
+        <td>${user.password}</td>
+        <td>${user.phone}</td>
+        <td>${user.email}</td>
+        <td>${user.role}</td>
+        <td>${user.full_name}</td>
+        <td>${user.birthday}</td>
+        <td>${user.avatar_path}</td>
+        <td>${user.created_at}</td>
+        <td>${user.status}</td>
+
         <td>
           <a class="btn edit" href="/users?action=edit&id=${user.user_id}">Edit</a>
         </td>

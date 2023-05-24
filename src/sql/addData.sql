@@ -42,7 +42,7 @@ INSERT INTO reviews (product_id, order_id, rating, review) VALUES
 (6, 4, 3, 'I haven''t seen a huge difference in my wrinkles yet.'),
 (7, 4, 5, 'This yoga mat is perfect for my home workouts.');
 
-INSERT INTO product_images (image_path) VALUES
+INSERT INTO product_images (product_id,image_path) VALUES
 (1, 'images/iphone12.png'),
 (2, 'images/samsungs21.png'),
 (3, 'images/nikeairforce1.png'),

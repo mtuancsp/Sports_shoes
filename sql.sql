@@ -1,7 +1,6 @@
 create schema mydb;
 use mydb;
 
-
 create table users
 (
     user_id     int auto_increment

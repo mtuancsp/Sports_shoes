@@ -80,3 +80,4 @@ VALUES (1, 1, 2);
 
 INSERT INTO cart (user_id, product_id, quantity)
 VALUES (2, 3, 1);
+

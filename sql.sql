@@ -34,7 +34,6 @@ create table categories
 );
 
 
-
 create table products
 (
     product_id      int                                 not null,

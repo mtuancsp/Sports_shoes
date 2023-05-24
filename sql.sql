@@ -1,19 +1,6 @@
 create schema mydb;
 use mydb;
 
-create table addresses
-(
-    address_id int auto_increment
-        primary key,
-    user_id    int          not null,
-    details    varchar(100) not null,
-    ward       varchar(20)  not null,
-    district   varchar(20)  not null,
-    city       varchar(20)  not null,
-    constraint fk_Addresses_Users
-        foreign key (user_id) references users (user_id)
-            on update cascade on delete cascade
-);
 
 create table users
 (
@@ -38,21 +25,6 @@ create table users
         unique (username)
 );
 
-create table reviews
-(
-    review_id  int auto_increment,
-    rating     tinyint                             null,
-    review     text                                null,
-    product_id int                                 not null,
-    created_at timestamp default CURRENT_TIMESTAMP null,
-    primary key (review_id, product_id),
-    constraint fk_Reviews_Products1
-        foreign key (product_id) references products (product_id)
-);
-
-create index fk_Reviews_Products1_idx
-    on reviews (product_id);
-
 create table products
 (
     product_id      int                                 not null,
@@ -71,6 +43,35 @@ create table products
     constraint fk_Products_Users
         foreign key (user_id) references users (user_id)
 );
+
+create table addresses
+(
+    address_id int auto_increment
+        primary key,
+    user_id    int          not null,
+    details    varchar(100) not null,
+    ward       varchar(20)  not null,
+    district   varchar(20)  not null,
+    city       varchar(20)  not null,
+    constraint fk_Addresses_Users
+        foreign key (user_id) references users (user_id)
+            on update cascade on delete cascade
+);
+
+create table reviews
+(
+    review_id  int auto_increment,
+    rating     tinyint                             null,
+    review     text                                null,
+    product_id int                                 not null,
+    created_at timestamp default CURRENT_TIMESTAMP null,
+    primary key (review_id, product_id),
+    constraint fk_Reviews_Products1
+        foreign key (product_id) references products (product_id)
+);
+
+create index fk_Reviews_Products1_idx
+    on reviews (product_id);
 
 create index fk_Products_Categories1_idx
     on products (category_id);

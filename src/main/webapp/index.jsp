@@ -14,5 +14,8 @@
 <h1>Hello World!</h1>
 <br/>
 <a href="/view/index.html">Case Study Module 3 - Nhóm 2</a>
+<%
+
+%>
 </body>
 </html>

@@ -10,6 +10,8 @@ import java.util.List;
 public class UserDAO {
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String INSERT_USERS_SQL = "INSERT INTO users (username,password,phone, email,full_name,birthday) VALUES (?, ?, ?, ?, ?, ?);";
+    public UserDAO() {
+    }
     public List<Users> selectAllUsers(){
         List<Users> users = new ArrayList<>();
         try(Connection connection = DatabaseConnector.getConnection();

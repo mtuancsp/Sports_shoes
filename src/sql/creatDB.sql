@@ -1,5 +1,7 @@
-create schema case_study_3;
-use case_study_3;
+drop schema case_study;
+
+create schema case_study;
+use case_study;
 
 create table users
 (
@@ -20,14 +22,14 @@ create table users
 create table categories
 (
     category_id   smallint unsigned not null
-        primary key,
+        primary key auto_increment,
     category_name varchar(45)       not null
 );
 
 
 create table products
 (
-    product_id        int primary key,
+    product_id        int primary key auto_increment,
     product_name      varchar(45)       not null,
     price             int unsigned      not null,
     description       text              not null,
@@ -49,10 +51,7 @@ create table orders
     status       varchar(45)  null,
     comment      varchar(255) null,
     user_id      int          not null,
-    payment_id   tinyint      not null,
     primary key (order_id),
-    constraint fk_Orders_Payments1
-        foreign key (payment_id) references payments (payment_id),
     constraint fk_Orders_Users1
         foreign key (user_id) references users (user_id)
 );
@@ -117,7 +116,7 @@ create table payments
 
 create table order_details
 (
-    order_id   int     not null,
+    order_id   int     not null auto_increment,
     product_id int     not null,
     quantity   tinyint not null,
     primary key (order_id, product_id),
@@ -140,13 +139,4 @@ create table cart
     constraint cart_ibfk_2
         foreign key (product_id) references products (product_id)
 );
-
-
-
-
-
-
-
-
-
 

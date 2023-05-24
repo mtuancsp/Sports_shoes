@@ -1136,7 +1136,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="322" parent="303" name="id">
+    <column id="322" parent="303" name="cart_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1173,7 +1173,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <RefTableName>products</RefTableName>
     </foreign-key>
     <index id="329" parent="303" name="PRIMARY">
-      <ColNames>id</ColNames>
+      <ColNames>cart_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1375,7 +1375,7 @@ payment_id</ColNames>
     <key id="371" parent="307" name="payment_id_UNIQUE">
       <UnderlyingIndexName>payment_id_UNIQUE</UnderlyingIndexName>
     </key>
-    <column id="372" parent="308" name="id">
+    <column id="372" parent="308" name="product_images_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1396,7 +1396,7 @@ payment_id</ColNames>
       <RefTableName>products</RefTableName>
     </foreign-key>
     <index id="376" parent="308" name="PRIMARY">
-      <ColNames>id</ColNames>
+      <ColNames>product_images_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1438,7 +1438,7 @@ payment_id</ColNames>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="385" parent="309" name="quantityInStock">
+    <column id="385" parent="309" name="quantity_in_stock">
       <DasType>smallint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
@@ -1561,12 +1561,12 @@ product_id</ColNames>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="410" parent="311" name="fullName">
+    <column id="410" parent="311" name="full_name">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="411" parent="311" name="birthdate">
+    <column id="411" parent="311" name="birthday">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>

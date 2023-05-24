@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
     
@@ -17,19 +18,19 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" width="125px"></a>
+                    <a href="index.jsp"><img src="images/logo.png" width="125px"></a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
-                        <li><a href="index.html">Home</a></li>
-                         <li><a href="products.html">Products</a></li>
+                        <li><a href="index.jsp">Home</a></li>
+                         <li><a href="products.jsp">Products</a></li>
                          <li><a href="">About</a></li>
                          <li><a href="">Contact</a></li>
-                         <li><a href="account.html">Account</a></li>
+                         <li><a href="account.jsp">Account</a></li>
 
                     </ul>
                 </nav>
-                <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+                <a href="cart.jsp"><img src="images/cart.png" width="30px" height="30px"></a>
                 <img src="images/menu.png" class="menu-icon" onClick="menutoggle()" >
             </div>
            
@@ -76,7 +77,7 @@
                             <option>10<!--XXL--></option>
                         </select>
                         <input type="number" values="1">
-                        <a href="cart.html" class="btn">Add to Cart</a>
+                        <a href="cart.jsp" class="btn">Add to Cart</a>
                         <h3>Product Details <i class="fa fa-indent" ></i></h3>
                         <br>
                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
@@ -89,7 +90,7 @@
         <div class="small-container">
             <div class="row row-2">
                 <h2>Related Products</h2>
-                <a href="products.html"><p>View More</p></a>
+                <a href="products.jsp"><p>View More</p></a>
             </div>
         </div>
                 
@@ -97,8 +98,8 @@
         <div class="small-container">
              <div class="row">
                      <div class="col-4">
-                        <a href="products-details.html"><img src="images/product-11.jpg"></a>
-                        <a href="products-details.html"><h4>Downshifter Sports Shoes</h4></a>
+                        <a href="products-details.jsp"><img src="images/product-11.jpg"></a>
+                        <a href="products-details.jsp"><h4>Downshifter Sports Shoes</h4></a>
                         <div class="rating">
                             
                             <i class="fa fa-star" ></i>
@@ -110,7 +111,7 @@
                         <p>$50.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="products-details.html"><img src="images/product-2.jpg"></a>
+                        <a href="products-details.jsp"><img src="images/product-2.jpg"></a>
                         <h4>Lace-Up Running Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -122,7 +123,7 @@
                         <p>$35.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="products-details.html"><img src="images/product-3.jpg"></a>
+                        <a href="products-details.jsp"><img src="images/product-3.jpg"></a>
                         <h4>Lace Fastening Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>
@@ -134,7 +135,7 @@
                         <p>$15.00</p>
                     </div>
                     <div class="col-4">
-                        <a href="products-details.html"><img src="images/product-10.jpg"></a>
+                        <a href="products-details.jsp"><img src="images/product-10.jpg"></a>
                         <h4>Flat Lace-Fastening Shoes</h4>
                         <div class="rating">
                             <i class="fa fa-star" ></i>

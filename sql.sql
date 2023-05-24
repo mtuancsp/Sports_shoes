@@ -1,5 +1,5 @@
-create schema mydb;
-use mydb;
+create schema case_study_3;
+use case_study_3;
 
 create table users
 (
@@ -9,11 +9,11 @@ create table users
     password    varchar(45)                                     not null,
     phone       char(10)                                        not null,
     email       varchar(45)                                     not null,
-    role        enum ('admin', 'manager', 'seller', 'customer') not null,
-    fullName    varchar(100)                                    not null,
-    birthdate   date                                            not null,
-    avatar_path varchar(255)                                    null,
-    created_at  timestamp default CURRENT_TIMESTAMP             null,
+    role        enum ('admin', 'manager', 'seller', 'customer') not null default 'customer',
+    full_name    varchar(100)                                   ,
+    birthday   date                                             ,
+    avatar_path varchar(255)                                    ,
+    created_at  timestamp default CURRENT_TIMESTAMP             ,
     constraint email_UNIQUE
         unique (email),
     constraint phone_UNIQUE
@@ -38,12 +38,12 @@ create table products
 (
     product_id      int                                 not null,
     product_name    varchar(45)                         not null,
-    price           int unsigned                        null,
+    price           int unsigned                        not null,
     description     text                                not null,
     user_id         int                                 not null,
     category_id     smallint unsigned                   not null,
-    quantityInStock smallint                            not null,
-    created_at      timestamp default CURRENT_TIMESTAMP null,
+    quantity_in_stock smallint                            not null,
+    created_at      timestamp default CURRENT_TIMESTAMP,
     primary key (product_id, user_id, category_id),
     constraint product_id_UNIQUE
         unique (product_id),
@@ -76,7 +76,7 @@ create table reviews
     review     text                                null,
     product_id int                                 not null,
     created_at timestamp default CURRENT_TIMESTAMP null,
-    primary key (review_id, product_id),
+    primary key (review_id),
     constraint fk_Reviews_Products1
         foreign key (product_id) references products (product_id)
 );
@@ -90,9 +90,9 @@ create index fk_Products_Categories1_idx
 create index fk_Products_Users_idx
     on products (user_id);
 
-create table productimages
+create table product_images
 (
-    id         int auto_increment
+    image_id         int auto_increment
         primary key,
     product_id int          not null,
     image_path varchar(255) null,
@@ -101,7 +101,7 @@ create table productimages
 );
 
 create index product_id
-    on productimages (product_id);
+    on product_images (product_id);
 
 create table payments
 (
@@ -139,7 +139,7 @@ create index fk_Orders_Payments1_idx
 create index fk_Orders_Users1_idx
     on orders (user_id);
 
-create table orderdetails
+create table order_details
 (
     order_id   int     not null,
     product_id int     not null,
@@ -152,15 +152,15 @@ create table orderdetails
 );
 
 create index fk_Orders_has_Products_Orders1_idx
-    on orderdetails (order_id);
+    on order_details (order_id);
 
 create index fk_Orders_has_Products_Products1_idx
-    on orderdetails (product_id);
+    on order_details (product_id);
 
 
 create table cart
 (
-    id         int auto_increment
+    cart_id         int auto_increment
         primary key,
     user_id    int                                 not null,
     product_id int                                 not null,

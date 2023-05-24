@@ -25,6 +25,7 @@ create table users
         unique (username)
 );
 
+
 create table categories
 (
     category_id   smallint unsigned not null
@@ -33,6 +34,8 @@ create table categories
     constraint category_id_UNIQUE
         unique (category_id)
 );
+
+
 
 create table products
 (
@@ -66,6 +69,7 @@ create table addresses
         foreign key (user_id) references users (user_id)
             on update cascade on delete cascade
 );
+
 
 create table reviews
 (

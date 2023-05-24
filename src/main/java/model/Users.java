@@ -1,6 +1,6 @@
 package model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Users {
@@ -15,10 +15,7 @@ public class Users {
     private String avatar_path;
     private Timestamp created_at;
 
-    public Users() {
-    }
-
-    public Users(int user_id, String username, String password, String phone, String email, String role, String full_name, Date birthday, String avatar_path, Timestamp created_at) {
+    public Users(int user_id, String username, String password, String phone, String email, String role, String full_name, Date birthday, String avatar_path, java.sql.Timestamp created_at) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
@@ -103,11 +100,11 @@ public class Users {
         this.avatar_path = avatar_path;
     }
 
-    public Timestamp getCreated_at() {
+    public java.sql.Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Timestamp created_at) {
+    public void setCreated_at(java.sql.Timestamp created_at) {
         this.created_at = created_at;
     }
 }

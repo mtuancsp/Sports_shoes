@@ -997,16 +997,16 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <schema id="288" parent="1" name="b&apos;sampledatabase&apos;">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="289" parent="1" name="classicmodels">
-      <CollationName>latin1_swedish_ci</CollationName>
-    </schema>
-    <schema id="290" parent="1" name="demo">
+    <schema id="289" parent="1" name="case_study_3">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="291" parent="1" name="information_schema">
-      <CollationName>utf8mb3_general_ci</CollationName>
+    <schema id="290" parent="1" name="classicmodels">
+      <CollationName>latin1_swedish_ci</CollationName>
     </schema>
-    <schema id="292" parent="1" name="mydb">
+    <schema id="291" parent="1" name="demo">
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="292" parent="1" name="information_schema">
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="mysql">
@@ -1061,45 +1061,45 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="308" parent="292" name="addresses">
+    <table id="308" parent="289" name="addresses">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="309" parent="292" name="cart">
+    <table id="309" parent="289" name="cart">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="310" parent="292" name="categories">
+    <table id="310" parent="289" name="categories">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="311" parent="292" name="orderdetails">
+    <table id="311" parent="289" name="order_details">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="312" parent="292" name="orders">
+    <table id="312" parent="289" name="orders">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="313" parent="292" name="payments">
+    <table id="313" parent="289" name="payments">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="314" parent="292" name="productimages">
+    <table id="314" parent="289" name="product_images">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="315" parent="292" name="products">
+    <table id="315" parent="289" name="products">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="316" parent="292" name="reviews">
+    <table id="316" parent="289" name="reviews">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="317" parent="292" name="users">
+    <table id="317" parent="289" name="users">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_general_ci</CollationName>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="318" parent="308" name="address_id">
       <AutoIncrement>1</AutoIncrement>
@@ -1153,7 +1153,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="328" parent="309" name="id">
+    <column id="328" parent="309" name="cart_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1186,13 +1186,11 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </foreign-key>
     <foreign-key id="334" parent="309" name="cart_ibfk_2">
       <ColNames>product_id</ColNames>
-      <OnDelete>cascade</OnDelete>
-      <OnUpdate>cascade</OnUpdate>
       <RefColNames>product_id</RefColNames>
       <RefTableName>products</RefTableName>
     </foreign-key>
     <index id="335" parent="309" name="PRIMARY">
-      <ColNames>id</ColNames>
+      <ColNames>cart_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1200,7 +1198,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="337" parent="309" name="cart_ibfk_2">
+    <index id="337" parent="309" name="product_id">
       <ColNames>product_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1257,7 +1255,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <RefColNames>order_id</RefColNames>
       <RefTableName>orders</RefTableName>
     </foreign-key>
-    <foreign-key id="349" parent="311" name="orderdetails_products_product_id_fk">
+    <foreign-key id="349" parent="311" name="fk_Orders_has_Products_Products1">
       <ColNames>product_id</ColNames>
       <RefColNames>product_id</RefColNames>
       <RefTableName>products</RefTableName>
@@ -1272,7 +1270,7 @@ product_id</ColNames>
       <ColNames>order_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="352" parent="311" name="fk_Orders_has_Products_Orders1_idx1">
+    <index id="352" parent="311" name="fk_Orders_has_Products_Products1_idx">
       <ColNames>product_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1394,7 +1392,7 @@ payment_id</ColNames>
     <key id="377" parent="313" name="payment_id_UNIQUE">
       <UnderlyingIndexName>payment_id_UNIQUE</UnderlyingIndexName>
     </key>
-    <column id="378" parent="314" name="id">
+    <column id="378" parent="314" name="image_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1411,17 +1409,15 @@ payment_id</ColNames>
     </column>
     <foreign-key id="381" parent="314" name="productimages_ibfk_1">
       <ColNames>product_id</ColNames>
-      <OnDelete>cascade</OnDelete>
-      <OnUpdate>cascade</OnUpdate>
       <RefColNames>product_id</RefColNames>
       <RefTableName>products</RefTableName>
     </foreign-key>
     <index id="382" parent="314" name="PRIMARY">
-      <ColNames>id</ColNames>
+      <ColNames>image_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="383" parent="314" name="productimages_ibfk_1">
+    <index id="383" parent="314" name="product_id">
       <ColNames>product_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1442,6 +1438,7 @@ payment_id</ColNames>
     </column>
     <column id="387" parent="315" name="price">
       <DasType>int unsigned|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
     <column id="388" parent="315" name="description">
@@ -1459,7 +1456,7 @@ payment_id</ColNames>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="391" parent="315" name="quantityInStock">
+    <column id="391" parent="315" name="quantity_in_stock">
       <DasType>smallint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
@@ -1480,11 +1477,13 @@ payment_id</ColNames>
       <RefTableName>categories</RefTableName>
     </foreign-key>
     <index id="395" parent="315" name="PRIMARY">
-      <ColNames>product_id</ColNames>
+      <ColNames>product_id
+user_id
+category_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="396" parent="315" name="product_id">
+    <index id="396" parent="315" name="product_id_UNIQUE">
       <ColNames>product_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
@@ -1502,8 +1501,8 @@ payment_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="400" parent="315" name="product_id">
-      <UnderlyingIndexName>product_id</UnderlyingIndexName>
+    <key id="400" parent="315" name="product_id_UNIQUE">
+      <UnderlyingIndexName>product_id_UNIQUE</UnderlyingIndexName>
     </key>
     <column id="401" parent="316" name="review_id">
       <AutoIncrement>1</AutoIncrement>
@@ -1531,14 +1530,11 @@ payment_id</ColNames>
     </column>
     <foreign-key id="406" parent="316" name="fk_Reviews_Products1">
       <ColNames>product_id</ColNames>
-      <OnDelete>cascade</OnDelete>
-      <OnUpdate>cascade</OnUpdate>
       <RefColNames>product_id</RefColNames>
       <RefTableName>products</RefTableName>
     </foreign-key>
     <index id="407" parent="316" name="PRIMARY">
-      <ColNames>review_id
-product_id</ColNames>
+      <ColNames>review_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1579,15 +1575,16 @@ product_id</ColNames>
     </column>
     <column id="415" parent="317" name="role">
       <DasType>enum(&apos;admin&apos;, &apos;manager&apos;, &apos;seller&apos;, &apos;customer&apos;)|0e</DasType>
+      <DefaultExpression>&apos;customer&apos;</DefaultExpression>
+      <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="416" parent="317" name="fullName">
+    <column id="416" parent="317" name="full_name">
       <DasType>varchar(100)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="417" parent="317" name="birthdate">
+    <column id="417" parent="317" name="birthday">
       <DasType>date|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
     <column id="418" parent="317" name="avatar_path">

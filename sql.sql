@@ -27,7 +27,7 @@ create table users
 create table categories
 (
     category_id   smallint unsigned not null
-        primary key,
+        primary key ,
     category_name varchar(45)       not null,
     constraint category_id_UNIQUE
         unique (category_id)

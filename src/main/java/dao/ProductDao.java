@@ -16,12 +16,12 @@ public class ProductDao {
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
     private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name = ?;";
-    private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_id = ?";
-    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_name = ?;";
+    private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_name = ?";
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
 
 
     // Danh sách tất cả sản phẩm
-    public List<Products> selectAllUsers() {
+    public List<Products> selectAllProduct() {
         List<Products> products = new ArrayList<Products>();
         try (Connection connection = DatabaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PRODUCT))
@@ -50,13 +50,13 @@ public class ProductDao {
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT_SQL)) {
             preparedStatement.setInt(1, products.getProduct_id());
-            preparedStatement.setString(1, products.getProduct_name());
-            preparedStatement.setInt(1, products.getPrice());
-            preparedStatement.setString(1, products.getDescription());
-            preparedStatement.setInt(1, products.getSupplier_id());
-            preparedStatement.setInt(1, products.getCategory_id());
-            preparedStatement.setInt(1, products.getQuantity_in_stock());
-            preparedStatement.setTimestamp(1, products.getCreated_at());
+            preparedStatement.setString(2, products.getProduct_name());
+            preparedStatement.setInt(3, products.getPrice());
+            preparedStatement.setString(4, products.getDescription());
+            preparedStatement.setInt(5, products.getSupplier_id());
+            preparedStatement.setInt(6, products.getCategory_id());
+            preparedStatement.setInt(7, products.getQuantity_in_stock());
+            preparedStatement.setTimestamp(8, products.getCreated_at());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -67,15 +67,15 @@ public class ProductDao {
     public boolean updateUser(Products products) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_SQL);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_SQL)) {
             preparedStatement.setInt(1, products.getProduct_id());
-            preparedStatement.setString(1, products.getProduct_name());
-            preparedStatement.setInt(1, products.getPrice());
-            preparedStatement.setString(1, products.getDescription());
-            preparedStatement.setInt(1, products.getSupplier_id());
-            preparedStatement.setInt(1, products.getCategory_id());
-            preparedStatement.setInt(1, products.getQuantity_in_stock());
-            preparedStatement.setTimestamp(1, products.getCreated_at());
+            preparedStatement.setString(2, products.getProduct_name());
+            preparedStatement.setInt(3, products.getPrice());
+            preparedStatement.setString(4, products.getDescription());
+            preparedStatement.setInt(5, products.getSupplier_id());
+            preparedStatement.setInt(6, products.getCategory_id());
+            preparedStatement.setInt(7, products.getQuantity_in_stock());
+            preparedStatement.setTimestamp(8, products.getCreated_at());
             rowUpdated = preparedStatement.executeUpdate() > 0;
         }
         return rowUpdated;

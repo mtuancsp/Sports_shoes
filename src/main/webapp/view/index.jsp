@@ -21,7 +21,7 @@
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="index.jsp">Home</a></li>
-                         <li><a href="products.jsp">Products</a></li>
+                         <li><a href="testProducts.jsp">Products</a></li>
                          <li><a href="">About</a></li>
                          <li><a href="">Contact</a></li>
                          <li><a href="account.jsp">Account</a></li>

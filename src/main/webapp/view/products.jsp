@@ -41,7 +41,7 @@
         
         <!------------------------------ Products------------------------------>
         <div class="small-container">
-            <div class="row row-2">
+            <div class="row row-2" style="margin-top: 50px">
                 <h2>All Products</h2>
                 <select>
                     <option>Default sorting</option>
@@ -107,13 +107,13 @@
                 </div>
             
             <!-------------- new row----------------->
-            
+
             <div class="row">
                     <div class="col-4">
                         <a href="products-details.jsp"><img src="images/product-5.jpg"></a>
                         <h4>Flat Heel gray hoes</h4>
                         <div class="rating">
-                            
+
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
@@ -157,7 +157,7 @@
                             <i class="fa fa-star-o" ></i>
                         </div>
                         <p>$35.00</p>
-                    </div>  
+                    </div>
                 </div>
             <!--new row for the latest product-->
                 <div class="row">
@@ -165,7 +165,7 @@
                         <a href="products-details.jsp"><img src="images/product-7.jpg"></a>
                         <h4>HRX cotton socks</h4>
                         <div class="rating">
-                            
+
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
@@ -209,7 +209,7 @@
                             <i class="fa fa-star-o" ></i>
                         </div>
                         <p>$21.00</p>
-                    </div>  
+                    </div>
                 </div>
             
             <div class="page-btn">
@@ -219,6 +219,7 @@
                 <span>4</span>
                 <span>&#8594;</span>
             </div>
+
             
         </div>
         

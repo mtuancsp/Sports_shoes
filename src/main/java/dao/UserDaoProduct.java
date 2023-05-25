@@ -17,10 +17,10 @@ public class UserDaoProduct {
     private static final String DELETE_PRODUCT_SQL = "delete from case_study.products where product_id = ?";
     private static final String UPDATE_PRODUCT_SQL = "update case_study.products set product_id = ?, product_name = ?, price = ?, description = ?, user_id = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";;
 
-    public List<Products> selectAllUsers() {
+    public List<Products> selectAllProduct() {
         List<Products> products = new ArrayList<Products>();
         try (Connection connection = DatabaseConnector.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PRODUCT))
+             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PRODUCT))
         {
             System.out.println(statement);
             ResultSet resultSet = statement.executeQuery();
@@ -29,17 +29,18 @@ public class UserDaoProduct {
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
-                int user_id = resultSet.getInt("user_id");
+                int supplier_id = resultSet.getInt("supplier_id");
                 int category_id = resultSet.getInt("category_id");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
-                products.add((new Products(product_id,product_name,price,description,user_id,category_id,quantity_in_stock,created_at)));
+                products.add((new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at)));
             }
         } catch (SQLException e){
             e.printStackTrace();
         }
         return products;
     }
+
     public void insertUser(Products products) throws SQLException {
         System.out.println(INSERT_PRODUCT_SQL);
         // try-with-resource statement will auto close the connection.

@@ -11,7 +11,7 @@ create table users
     password    varchar(45)                                     not null,
     phone       char(10)          unique                              not null,
     email       varchar(45)   unique                                  not null,
-    role        enum ('admin', 'manager', 'seller', 'customer') not null default 'customer',
+    role        enum ('admin', 'manager', 'customer') not null default 'customer',
     full_name   varchar(100),
     birthday    date,
     avatar_path varchar(255),
@@ -26,6 +26,12 @@ create table categories
     category_name varchar(45)       not null
 );
 
+CREATE TABLE suppliers (
+                           supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+                           supplier_name VARCHAR(100),
+                           phone VARCHAR(10) not null unique,
+                           email VARCHAR(100) not null unique
+);
 
 create table products
 (
@@ -33,14 +39,14 @@ create table products
     product_name      varchar(45)       not null,
     price             int unsigned      not null,
     description       text              not null,
-    user_id           int               not null,
+    supplier_id           int               not null,
     category_id       smallint unsigned not null,
     quantity_in_stock smallint          not null,
     created_at        timestamp default CURRENT_TIMESTAMP,
     constraint fk_Products_Categories1
         foreign key (category_id) references categories (category_id),
     constraint fk_Products_Users
-        foreign key (user_id) references users (user_id)
+        foreign key (supplier_id) references suppliers (supplier_id)
 );
 
 create table orders

@@ -3,10 +3,10 @@ INSERT INTO users (username, password, phone, email, role, full_name, birthday, 
 ('admin', 'admin123', '0123456789', 'admin@example.com', 'admin', 'Admin', '1990-01-01', 'avatar/admin.png', 'active'),
 ('manager1', 'manager123', '0123456788', 'manager1@example.com', 'manager', 'Manager 1', '1992-05-10', 'avatar/manager1.png', 'active'),
 ('manager2', 'manager123', '0123456787', 'manager2@example.com', 'manager', 'Manager 2', '1994-08-15', 'avatar/manager2.png', 'active'),
-('seller1', 'seller123', '0123456786', 'seller1@example.com', 'seller', 'Seller 1', '1996-03-20', 'avatar/seller1.png', 'active'),
-('seller2', 'seller123', '0123456785', 'seller2@example.com', 'seller', 'Seller 2', '1998-06-25', 'avatar/seller2.png', 'active'),
-('customer1', 'customer123', '0123456784', 'customer1@example.com', 'customer', 'Customer 1', '2000-09-30', 'avatar/customer1.png', 'active'),
-('customer2', 'customer123', '0123456783', 'customer2@example.com', 'customer', 'Customer 2', '2002-12-05', 'avatar/customer2.png', 'active');
+('customer1', 'customer123', '0123456786', 'seller1@example.com', 'customer', 'Seller 1', '1996-03-20', 'avatar/seller1.png', 'active'),
+('customer2', 'customer123', '0123456785', 'seller2@example.com', 'customer', 'Seller 2', '1998-06-25', 'avatar/seller2.png', 'active'),
+('customer3', 'customer123', '0123456784', 'customer1@example.com', 'customer', 'Customer 1', '2000-09-30', 'avatar/customer1.png', 'active'),
+('customer4', 'customer123', '0123456783', 'customer2@example.com', 'customer', 'Customer 2', '2002-12-05', 'avatar/customer2.png', 'active');
 
 INSERT INTO categories (category_id, category_name) VALUES
 (1, 'Electronics'),
@@ -15,7 +15,15 @@ INSERT INTO categories (category_id, category_name) VALUES
 (4, 'Beauty and Personal Care'),
 (5, 'Sports and Outdoors');
 
-INSERT INTO products (product_id, product_name, price, description, user_id, category_id, quantity_in_stock) VALUES
+INSERT INTO suppliers (supplier_name, phone, email)
+VALUES
+    ('Supplier A', '0111111111', 'supplierA@example.com'),
+    ('Supplier B', '0222222222', 'supplierB@example.com'),
+    ('Supplier C', '0333333333', 'supplierC@example.com'),
+    ('Supplier D', '0444444444', 'supplierD@example.com'),
+    ('Supplier E', '0555555555', 'supplierE@example.com');
+
+INSERT INTO products (product_id, product_name, price, description, supplier_id, category_id, quantity_in_stock) VALUES
 (1, 'iPhone 12 Pro Max', 3299, 'A phone with the most advanced pro camera system ever on an iPhone.', 4, 1, 100),
 (2, 'Samsung Galaxy S21 Ultra', 2999, 'The ultimate smartphone with an incredible 108MP camera.', 5, 1, 150),
 (3, 'Nike Air Force 1', 899, 'A classic sneaker that never goes out of style.', 4, 2, 200),

@@ -3,22 +3,26 @@ package dao;
 import model.Categories;
 import model.Products;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ProductDao {
 
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
-    private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description, user_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name = ?;";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_id = ?";
-    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, user_id = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_name = ?;";;
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_name = ?;";
 
 
     // Danh sách tất cả sản phẩm
     public List<Products> selectAllUsers() {
-        List<Products> products = new ArrayList<Products>();x
+        List<Products> products = new ArrayList<Products>();
         try (Connection connection = DatabaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PRODUCT))
         {
@@ -29,11 +33,11 @@ public class ProductDao {
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
-                int user_id = resultSet.getInt("user_id");
+                int supplier_id = resultSet.getInt("supplier_id");
                 int category_id = resultSet.getInt("category_id");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
-                products.add((new Products(product_id,product_name,price,description,user_id,category_id,quantity_in_stock,created_at)));
+                products.add((new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at)));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -49,7 +53,7 @@ public class ProductDao {
             preparedStatement.setString(1, products.getProduct_name());
             preparedStatement.setInt(1, products.getPrice());
             preparedStatement.setString(1, products.getDescription());
-            preparedStatement.setInt(1, products.getUser_id());
+            preparedStatement.setInt(1, products.getSupplier_id());
             preparedStatement.setInt(1, products.getCategory_id());
             preparedStatement.setInt(1, products.getQuantity_in_stock());
             preparedStatement.setTimestamp(1, products.getCreated_at());
@@ -68,7 +72,7 @@ public class ProductDao {
             preparedStatement.setString(1, products.getProduct_name());
             preparedStatement.setInt(1, products.getPrice());
             preparedStatement.setString(1, products.getDescription());
-            preparedStatement.setInt(1, products.getUser_id());
+            preparedStatement.setInt(1, products.getSupplier_id());
             preparedStatement.setInt(1, products.getCategory_id());
             preparedStatement.setInt(1, products.getQuantity_in_stock());
             preparedStatement.setTimestamp(1, products.getCreated_at());
@@ -120,25 +124,58 @@ public class ProductDao {
        return products;
     }
 // tìm kiếm sản phẩm theo tên
-      public Products findProducts(){
-        Products products = null;
+      public Products findProducts(String name) {
 
-        try(Connection connection = DatabaseConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_PRODUCT_BY_NAME)){
-            ResultSet resultSet = statement.executeQuery();
-            int product_id = resultSet.getInt("product_id");
-            String product_name = resultSet.getString("product_name");
-            int price = resultSet.getInt("price");
-            String description = resultSet.getString("description");
-            int user_id = resultSet.getInt("user_id");
-            int category_id = resultSet.getInt("category_id");
-            int quantity_in_stock = resultSet.getInt("quantity_in_stock");
-            Timestamp created_at = resultSet.getTimestamp("created_at");
-            products = new Products(product_id,product_name,price,description,user_id,category_id,quantity_in_stock,created_at);
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-       return products;
+          Products products = null;
+
+          try (Connection connection = DatabaseConnector.getConnection();
+               PreparedStatement statement = connection.prepareStatement(FIND_PRODUCT_BY_NAME)) {
+              statement.setString(1, name);
+              ResultSet resultSet = statement.executeQuery();
+              if (resultSet.next()) {
+                  int product_id = resultSet.getInt("product_id");
+                  String product_name = resultSet.getString("product_name");
+                  int price = resultSet.getInt("price");
+                  String description = resultSet.getString("description");
+                  int supplier_id = resultSet.getInt("supplier_id");
+                  int category_id = resultSet.getInt("category_id");
+                  int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+                  Timestamp created_at = resultSet.getTimestamp("created_at");
+                  products = new Products(product_id, product_name, price, description, supplier_id, category_id, quantity_in_stock, created_at);
+              }
+          } catch (SQLException e) {
+              e.printStackTrace();
+          }
+          return products;
       }
+      //nhập sản phẩm từ file có sẵn
+    public void insertProductFile(String filePath) throws SQLException, IOException {
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+             PreparedStatement statement = connection.prepareStatement(INSERT_PRODUCT_SQL);
+        ){
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                String[] files = line.split(",");
+                int product_id = Integer.parseInt(files[0]);
+                String product_name = files[1];
+                int price = Integer.parseInt(files[2]);
+                String description = files[3];
+                int supplier_id = Integer.parseInt(files[4]);
+                int category_id = Integer.parseInt(files[5]);
+                int quantity_in_stock = Integer.parseInt(files[6]);
+                Timestamp created_at = Timestamp.valueOf(files[7]);
+                statement.setInt(1,product_id);
+                statement.setString(2,product_name);
+                statement.setInt(3,price);
+                statement.setString(4,description);
+                statement.setInt(5,supplier_id);
+                statement.setInt(6,category_id);
+                statement.setInt(7,quantity_in_stock);
+                statement.setTimestamp(8,created_at);
+            }
+        }
+    }
 
 }

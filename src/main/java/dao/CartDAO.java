@@ -28,15 +28,15 @@ public class CartDAO {
             throw new RuntimeException(e);
         }return carts;
     }
-    public void addProductToCart(Cart cart) throws SQLException{
-        try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_PRODUCT_TO_CART)) {
-            preparedStatement.setString(1, cart.getUser_id());
-            preparedStatement.setString(2, cart.getProduct_id());
-            preparedStatement.setString(3, cart.getQuantity());
-            preparedStatement.setString(4, cart.getCreated_at());
-            System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
-        }
-    }
+//    public void addProductToCart(Cart cart) throws SQLException{
+//        try (Connection connection = DatabaseConnector.getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement(ADD_PRODUCT_TO_CART)) {
+//            preparedStatement.setString(1, cart.getUser_id());
+//            preparedStatement.setString(2, cart.getProduct_id());
+//            preparedStatement.setString(3, cart.getQuantity());
+//            preparedStatement.setString(4, cart.getCreated_at());
+//            System.out.println(preparedStatement);
+//            preparedStatement.executeUpdate();
+//        }
+//    }
 }

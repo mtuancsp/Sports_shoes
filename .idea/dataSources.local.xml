@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
   <component name="dataSourceStorageLocal" created-in="IU-223.8214.52">
-=======
-  <component name="dataSourceStorageLocal" created-in="IU-223.8836.41">
->>>>>>> 6bf7255afed225f35537ae1da3bfdddb7144d6a0
     <data-source name="@localhost" uuid="c596d6e0-20c1-4265-b1bf-df74f865a881">
       <database-info product="MySQL" version="8.0.33" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.33" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
@@ -15,14 +11,10 @@
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-<<<<<<< HEAD
           <node kind="schema">
             <name qname="case_study" />
             <name qname="bai_tap" />
           </node>
-=======
-          <node kind="schema" qname="case_study" />
->>>>>>> 6bf7255afed225f35537ae1da3bfdddb7144d6a0
         </introspection-scope>
       </schema-mapping>
     </data-source>

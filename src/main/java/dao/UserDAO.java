@@ -10,6 +10,8 @@ import java.util.List;
 public class UserDAO {
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String INSERT_USERS_SQL = "INSERT INTO users (username,password,phone, email,full_name,birthday) VALUES (?, ?, ?, ?, ?, ?);";
+    public UserDAO() {
+    }
     public List<Users> selectAllUsers(){
         List<Users> users = new ArrayList<>();
         try(Connection connection = DatabaseConnector.getConnection();
@@ -27,10 +29,13 @@ public class UserDAO {
                 Date birthday = resultSet.getDate("birthday");
                 String avatar_path = resultSet.getString("avatar_path");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
-               users.add(new Users(user_id,username,password,phone,email,role,full_name,birthday,avatar_path,created_at));
+                String status = resultSet.getString("status");
+               users.add(new Users(user_id,username,password,phone,email,role,full_name,birthday,avatar_path,created_at,status));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }return users;
     }
+
+
 }

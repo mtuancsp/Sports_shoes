@@ -13,6 +13,7 @@
         <introspection-scope>
           <node kind="schema">
             <name qname="@" />
+            <name qname="case_study" />
             <name qname="mydb" />
           </node>
         </introspection-scope>

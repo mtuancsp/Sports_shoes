@@ -19,6 +19,7 @@
 <body>
 <h1>Hello World!</h1>
 <br/>
-<a href="/view/index.jsp">Case Study Module 3 - Nhóm 2</a>
+<a href="/view/index.jsp">Case Study Module 3 - Nhóm 2</a><br><br>
+<a href="/test">TEST</a>
 </body>
 </html>

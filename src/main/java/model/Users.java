@@ -14,8 +14,9 @@ public class Users {
     private Date birthday;
     private String avatar_path;
     private Timestamp created_at;
+    private String status;
 
-    public Users(int user_id, String username, String password, String phone, String email, String role, String full_name, Date birthday, String avatar_path, java.sql.Timestamp created_at) {
+    public Users(int user_id, String username, String password, String phone, String email, String role, String full_name, Date birthday, String avatar_path, java.sql.Timestamp created_at, String status) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
@@ -26,6 +27,7 @@ public class Users {
         this.birthday = birthday;
         this.avatar_path = avatar_path;
         this.created_at = created_at;
+        this.status = status;
     }
 
     public int getUser_id() {
@@ -106,5 +108,11 @@ public class Users {
 
     public void setCreated_at(java.sql.Timestamp created_at) {
         this.created_at = created_at;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

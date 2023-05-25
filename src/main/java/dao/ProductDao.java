@@ -15,10 +15,13 @@ public class ProductDao {
 
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
     private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM case_study.products WHERE product_id = ?";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name = ?;";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_name = ?";
     private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
+    private static final String SHOW_PRODUCT_DETAILS = "SELECT * FROM case_study.products WHERE product_id = ?";
 
+    private static final String SEARCH_THE_FILTER = "SELECT * FROM case_study.products WHERE product_name LIKE ? AND price >= ? AND price <= ?";
 
     // Danh sách tất cả sản phẩm
     public List<Products> selectAllProduct() {
@@ -176,6 +179,99 @@ public class ProductDao {
                 statement.setTimestamp(8,created_at);
             }
         }
+    }
+
+    public Products selectProducts(int productID) {
+        Products products = null;
+        try (
+                Connection connection = DatabaseConnector.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_ID);
+                ){
+            statement.setInt(1,productID);
+            System.out.println(statement);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int product_id = resultSet.getInt("product_id");
+                String product_name = resultSet.getString("product_name");
+                int price = resultSet.getInt("price");
+                String description = resultSet.getString("description");
+                int supplier_id = resultSet.getInt("supplier_id");
+                int category_id = resultSet.getInt("category_id");
+                int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+                Timestamp created_at = resultSet.getTimestamp("created_at");
+                products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return products;
+    }
+    // hiển thị chi tiết sản phẩm theo
+    public Products productsDetails(int productID){
+        Products products = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try{
+            connection = DatabaseConnector.getConnection();
+            statement = connection.prepareStatement(SHOW_PRODUCT_DETAILS);
+            statement.setInt(1,productID);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                int product_id = resultSet.getInt("product_id");
+                String product_name = resultSet.getString("product_name");
+                int price = resultSet.getInt("price");
+                String description = resultSet.getString("description");
+                int supplier_id = resultSet.getInt("supplier_id");
+                int category_id = resultSet.getInt("category_id");
+                int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+                Timestamp created_at = resultSet.getTimestamp("created_at");
+                products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+    // tìm kiếm sản phẩm theo bộ lọc
+    public List<Products> getProductsByFilter(String keyword, double minPrice, double maxPrice){
+        List<Products> products = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try{
+            connection = DatabaseConnector.getConnection();
+            preparedStatement = connection.prepareStatement(SEARCH_THE_FILTER);
+            preparedStatement.setString(1, "%" + keyword + "%");
+            preparedStatement.setDouble(2,minPrice);
+            preparedStatement.setDouble(3,maxPrice);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int product_id = resultSet.getInt("product_id");
+                String product_name = resultSet.getString("product_name");
+                int price = resultSet.getInt("price");
+                String description = resultSet.getString("description");
+                int supplier_id = resultSet.getInt("supplier_id");
+                int category_id = resultSet.getInt("category_id");
+                int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+                Timestamp created_at = resultSet.getTimestamp("created_at");
+                products.add((new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null)
+                    connection.close();
+                if (preparedStatement != null)
+                    preparedStatement.close();
+                if (resultSet != null)
+                    resultSet.close();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return products;
     }
 
 }

@@ -40,7 +40,8 @@ public class ProductDao {
                 int category_id = resultSet.getInt("category_id");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
-                products.add((new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at)));
+                String image = resultSet.getString("image");
+                products.add((new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at,image)));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -144,7 +145,8 @@ public class ProductDao {
                   int category_id = resultSet.getInt("category_id");
                   int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                   Timestamp created_at = resultSet.getTimestamp("created_at");
-                  products = new Products(product_id, product_name, price, description, supplier_id, category_id, quantity_in_stock, created_at);
+                  String image = resultSet.getString("image");
+                  products = new Products(product_id, product_name, price, description, supplier_id, category_id, quantity_in_stock, created_at, image);
               }
           } catch (SQLException e) {
               e.printStackTrace();

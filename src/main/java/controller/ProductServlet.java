@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", value = "/ProductServlet")
+@WebServlet(name = "ProductServlet", value = "/view/listProduct")
 public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -23,8 +23,13 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        try {
+            listProduct(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -36,8 +41,8 @@ public class ProductServlet extends HttpServlet {
 
     private void listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException, SQLException{
         List<Products> listProduct = productDao.selectAllProduct();
-        request.setAttribute("products",listProduct);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
+        request.setAttribute("productList",listProduct);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/testProducts.jsp");
         requestDispatcher.forward(request,response);
     }
 
@@ -47,7 +52,6 @@ public class ProductServlet extends HttpServlet {
      request.setAttribute("products",existingProducts);
      RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
      requestDispatcher.forward(request,response);
-
 
     }
 
@@ -60,7 +64,8 @@ public class ProductServlet extends HttpServlet {
         int category_id = Integer.parseInt(request.getParameter("category_id"));
         int quantity_in_stock = Integer.parseInt(request.getParameter("quantity_in_stock"));
         Timestamp created_at = Timestamp.valueOf(request.getParameter("created_at"));
-        Products products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at);
+        String image = request.getParameter("image");
+        Products products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at,image);
         productDao.updateUser(products);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
         requestDispatcher.forward(request,response);

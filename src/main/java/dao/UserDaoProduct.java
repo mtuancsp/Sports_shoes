@@ -11,11 +11,11 @@ import static javax.swing.text.html.HTML.Tag.SELECT;
 
 public class UserDaoProduct {
 
-    private static final String SELECT_ALL_PRODUCT = "select * from products";
-    private static final String INSERT_PRODUCT_SQL = "INSERT INTO products ( product_id, product_name, price, description, user_id, category_id, quantityInStock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String SELECT_ALL_PRODUCT = "select * from case_study.products";
+    private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description, user_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_PRODUCT_BY_ID = "select product_id,product_name, price, description, user_id, category_id, quantityInStock, created_at from products where product_id = ?;";
-    private static final String DELETE_PRODUCT_SQL = "delete from products where product_id = ?";
-    private static final String UPDATE_PRODUCT_SQL = "update products set product_id = ?, product_name = ?, price = ?, description = ?, user_id = ?, category_id = ?, quantityInStock = ?, created_at = ?, where id = ?;";
+    private static final String DELETE_PRODUCT_SQL = "delete from case_study.products where product_id = ?";
+    private static final String UPDATE_PRODUCT_SQL = "update case_study.products set product_id = ?, product_name = ?, price = ?, description = ?, user_id = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";;
 
     public List<Products> selectAllUsers() {
         List<Products> products = new ArrayList<Products>();
@@ -91,13 +91,14 @@ public class UserDaoProduct {
     public List<Categories> getProductsGroups(){
         List<Categories> products =   new ArrayList<>();
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        PreparedStatement statement = null;
         ResultSet resultSet = null;
         try{
-            String sql = "SELECT * FROM Categories ";
+            String sql = "SELECT * FROM case_study.categories ";
             connection = DatabaseConnector.getConnection();
-            preparedStatement = connection.createStatement();
-            resultSet = preparedStatement.executeQuery(sql);
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+
             while (resultSet.next()){
                 int product_id = resultSet.getInt("product_id");
             }
@@ -106,9 +107,9 @@ public class UserDaoProduct {
             e.printStackTrace();
         } finally {
             try{
-            if( preparedStatement != null )
+            if( statement != null )
                 if( resultSet != null)
-                    preparedStatement.close();
+                    statement.close();
             if(connection != null)
                 connection.close();
         } catch (SQLException e) {

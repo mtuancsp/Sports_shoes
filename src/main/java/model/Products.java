@@ -9,11 +9,11 @@ public class Products {
     private int category_id;
     private int quantity_in_stock;
     private java.sql.Timestamp created_at;
-
+    private String image;
     public Products() {
     }
 
-    public Products(int product_id, String product_name, int price, String description, int supplier_id, int category_id, int quantityInStock, java.sql.Timestamp created_at) {
+    public Products(int product_id, String product_name, int price, String description, int supplier_id, int category_id, int quantityInStock, java.sql.Timestamp created_at, String image) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.price = price;
@@ -22,6 +22,7 @@ public class Products {
         this.category_id = category_id;
         this.quantity_in_stock = quantityInStock;
         this.created_at = created_at;
+        this.image = image;
     }
 
     public int getProduct_id() {
@@ -86,5 +87,11 @@ public class Products {
 
     public void setCreated_at(java.sql.Timestamp created_at) {
         this.created_at = created_at;
+    }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 }

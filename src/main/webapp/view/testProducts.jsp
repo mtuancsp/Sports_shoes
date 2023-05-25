@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +14,58 @@
           rel="stylesheet">
     <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .show-more-btn {
+            background-color: #ff523b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 0;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        #endMessage {
+            display: none;
+            text-align: center;
+            margin-top: 0;
+            color: #777;
+        }
+    </style>
+    <script>
+        function showNextProducts() {
+            var products = document.getElementsByClassName("product");
+            var visibleCount = 0;
+            var lastProductIndex = -1;
+
+            for (var i = 0; i < products.length; i++) {
+                if (products[i].style.display === "none") {
+                    products[i].style.display = "block";
+                    visibleCount++;
+                    if (visibleCount === 4) {
+                        break;
+                    }
+                }
+
+                if (products[i].style.display === "block") {
+                    lastProductIndex = i;
+                }
+            }
+
+            if (lastProductIndex === products.length - 1) {
+                var messageElement = document.getElementById("endMessage");
+                if (messageElement) {
+                    messageElement.style.display = "block";
+                }
+            }
+        }
+
+    </script>
 
 </head>
 <body>
@@ -55,29 +107,28 @@
 
     <div class="row">
         <c:forEach var="product" items="${productList}" varStatus="loop">
-            <c:if test="${loop.index < 4}">
-                <div class="col-4">
-                    <a href="products-details.jsp"><img src="${product.imageUrl}"></a>
-                    <a href="products-details.jsp"><h4>${product.name}</h4></a>
-                    <div class="rating">
-                        <c:forEach begin="1" end="${product.rating}">
-                            <i class="fa fa-star"></i>
-                        </c:forEach>
-                        <c:forEach begin="${product.rating + 1}" end="5">
-                            <i class="fa fa-star-o"></i>
-                        </c:forEach>
-                    </div>
-                    <p>${product.price}</p>
+            <div class="col-4 product" style="display: ${loop.index < 4 ? 'block' : 'none'};">
+                <a href="products-details.jsp"><img src="${product.image}"></a>
+                <a href="products-details.jsp"><h4>${product.product_name}</h4></a>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
                 </div>
-            </c:if>
+                <p>${product.price}</p>
+            </div>
         </c:forEach>
     </div>
 </div>
 
+<div id="endMessage" style="display: none; text-align: center">
+    <p>Đã hiển thị toàn bộ sản phẩm</p>
+</div>
+
 <div class="page-btn" style="text-align: center">
-    <c:if test="${fn:length(productList) > 4}">
-        <a href="nextProducts"><span>&#8594;</span></a>
-    </c:if>
+        <button class="show-more-btn" onclick="showNextProducts()">Show More</button>
 </div>
 
 

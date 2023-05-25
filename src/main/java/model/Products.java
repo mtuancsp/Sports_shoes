@@ -1,13 +1,11 @@
 package model;
 
-import java.security.Timestamp;
-
 public class Products {
     private int product_id;
     private String product_name;
     private int price;
     private String description;
-    private int user_id;
+    private int supplier_id;
     private int category_id;
     private int quantity_in_stock;
     private java.sql.Timestamp created_at;
@@ -15,12 +13,12 @@ public class Products {
     public Products() {
     }
 
-    public Products(int product_id, String product_name, int price, String description, int user_id, int category_id, int quantityInStock, java.sql.Timestamp created_at) {
+    public Products(int product_id, String product_name, int price, String description, int supplier_id, int category_id, int quantityInStock, java.sql.Timestamp created_at) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.price = price;
         this.description = description;
-        this.user_id = user_id;
+        this.supplier_id = supplier_id;
         this.category_id = category_id;
         this.quantity_in_stock = quantityInStock;
         this.created_at = created_at;
@@ -58,12 +56,12 @@ public class Products {
         this.description = description;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getSupplier_id() {
+        return supplier_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setSupplier_id(int supplier_id) {
+        this.supplier_id = supplier_id;
     }
 
     public int getCategory_id() {

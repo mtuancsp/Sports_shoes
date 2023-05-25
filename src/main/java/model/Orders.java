@@ -1,6 +1,6 @@
 package model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Orders {
     private int order_id;
@@ -11,12 +11,10 @@ public class Orders {
     private int user_id;
 
 
-    public Orders() {
-    }
-
-    public Orders(int order_id, Timestamp order_date,Timestamp shipped_date, String status, String comment, int user_id, int payment_id) {
+    public Orders(int order_id, java.sql.Timestamp order_date,java.sql.Timestamp shipped_date, String status, String comment, int user_id) {
         this.order_id = order_id;
         this.order_date = order_date;
+        this.shipped_date = shipped_date;
         this.status = status;
         this.comment = comment;
         this.user_id = user_id;

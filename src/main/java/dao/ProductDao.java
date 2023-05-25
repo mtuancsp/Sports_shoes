@@ -18,7 +18,7 @@ public class ProductDao {
 
     // Danh sách tất cả sản phẩm
     public List<Products> selectAllUsers() {
-        List<Products> products = new ArrayList<Products>();
+        List<Products> products = new ArrayList<Products>();x
         try (Connection connection = DatabaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_PRODUCT))
         {

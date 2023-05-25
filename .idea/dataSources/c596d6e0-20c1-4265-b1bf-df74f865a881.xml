@@ -1158,7 +1158,12 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
+<<<<<<< HEAD
     <column id="336" parent="324" name="id">
+=======
+    <column id="313" parent="302" name="address_id">
+      <AutoIncrement>3</AutoIncrement>
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1276,7 +1281,11 @@ product_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="359" parent="327" name="category_id">
+=======
+    <column id="332" parent="304" name="category_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>6</AutoIncrement>
       <DasType>smallint unsigned|0s</DasType>
       <NotNull>1</NotNull>
@@ -1298,7 +1307,11 @@ product_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="363" parent="328" name="order_id">
+=======
+    <column id="336" parent="305" name="order_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>5</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1340,7 +1353,11 @@ product_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="371" parent="329" name="order_id">
+=======
+    <column id="344" parent="306" name="order_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>5</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1388,7 +1405,11 @@ product_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="381" parent="330" name="payment_id">
+=======
+    <column id="354" parent="307" name="payment_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>5</AutoIncrement>
       <DasType>tinyint|0s</DasType>
       <NotNull>1</NotNull>
@@ -1440,7 +1461,11 @@ product_id</ColNames>
     <key id="391" parent="330" name="payment_id_UNIQUE">
       <UnderlyingIndexName>payment_id_UNIQUE</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="392" parent="331" name="image_id">
+=======
+    <column id="365" parent="308" name="image_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>8</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1475,7 +1500,11 @@ product_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="399" parent="332" name="product_id">
+=======
+    <column id="372" parent="309" name="product_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>8</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1594,7 +1623,11 @@ order_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="423" parent="334" name="supplier_id">
+=======
+    <column id="396" parent="311" name="supplier_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>6</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
@@ -1640,7 +1673,11 @@ order_id</ColNames>
     <key id="432" parent="334" name="email">
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="433" parent="335" name="user_id">
+=======
+    <column id="406" parent="312" name="user_id">
+>>>>>>> f26f1f1f9103addfc07e7acad9e87364cba53f5b
       <AutoIncrement>8</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>

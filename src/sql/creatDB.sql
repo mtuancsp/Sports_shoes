@@ -73,13 +73,12 @@ create table addresses
 
 create table reviews
 (
-    review_id  int auto_increment,
     product_id int                                 not null,
     order_id   int                                 not null,
     rating     tinyint                             null,
     review     text                                null,
     created_at timestamp default CURRENT_TIMESTAMP null,
-    primary key (review_id),
+    primary key (product_id, order_id),
     constraint fk_Reviews_Products1
         foreign key (product_id) references products (product_id),
     constraint reviews_orders_order_id_fk
@@ -113,7 +112,6 @@ create table payments
 );
 
 
-
 create table order_details
 (
     order_id   int     not null auto_increment,
@@ -128,12 +126,11 @@ create table order_details
 
 create table cart
 (
-    cart_id    int auto_increment
-        primary key,
     user_id    int                                 not null,
     product_id int                                 not null,
     quantity   int                                 not null,
     created_at timestamp default CURRENT_TIMESTAMP null,
+    primary key (user_id, product_id),
     constraint cart_ibfk_1
         foreign key (user_id) references users (user_id),
     constraint cart_ibfk_2

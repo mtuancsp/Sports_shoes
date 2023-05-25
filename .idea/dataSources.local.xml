@@ -10,7 +10,7 @@
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="mydb" />
+          <node kind="schema" qname="case_study" />
         </introspection-scope>
       </schema-mapping>
     </data-source>

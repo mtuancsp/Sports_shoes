@@ -5,21 +5,29 @@ import java.security.Timestamp;
 public class Orders {
     private int order_id;
     private Timestamp order_date;
+    private Timestamp shipped_date;
     private String status;
     private String comment;
     private int user_id;
-    private int payment_id;
+
 
     public Orders() {
     }
 
-    public Orders(int order_id, Timestamp order_date, String status, String comment, int user_id, int payment_id) {
+    public Orders(int order_id, Timestamp order_date,Timestamp shipped_date, String status, String comment, int user_id, int payment_id) {
         this.order_id = order_id;
         this.order_date = order_date;
         this.status = status;
         this.comment = comment;
         this.user_id = user_id;
-        this.payment_id = payment_id;
+    }
+
+    public Timestamp getShipped_date() {
+        return shipped_date;
+    }
+
+    public void setShipped_date(Timestamp shipped_date) {
+        this.shipped_date = shipped_date;
     }
 
     public int getOrder_id() {
@@ -62,11 +70,4 @@ public class Orders {
         this.user_id = user_id;
     }
 
-    public int getPayment_id() {
-        return payment_id;
-    }
-
-    public void setPayment_id(int payment_id) {
-        this.payment_id = payment_id;
-    }
 }

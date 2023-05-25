@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 public class CartDAO {
-    private static final String SELECT_ALL_CART = "select * from cart where user_id=?;";
-    private static final String ADD_PRODUCT_TO_CART ="insert into cart(user_id, product_id, quantity) values (?,?,?);";
+    private static final String SELECT_ALL_CART = "select * from case_study.cart where user_id=?;";
+    private static final String ADD_PRODUCT_TO_CART ="insert into case_study.cart(user_id, product_id, quantity) values (?,?,?);";
     public List<Cart> selectAllCart() throws SQLException{
         List<Cart> carts = new ArrayList<>();
         try(Connection connection = DatabaseConnector.getConnection();

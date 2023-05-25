@@ -7,16 +7,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.swing.text.html.HTML.Tag.SELECT;
+public class ProductDao {
 
-public class UserDaoProduct {
-
-    private static final String SELECT_ALL_PRODUCT = "select * from case_study.products";
+    private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
     private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description, user_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-    private static final String SELECT_PRODUCT_BY_ID = "select product_id,product_name, price, description, user_id, category_id, quantityInStock, created_at from products where product_id = ?;";
-    private static final String DELETE_PRODUCT_SQL = "delete from case_study.products where product_id = ?";
-    private static final String UPDATE_PRODUCT_SQL = "update case_study.products set product_id = ?, product_name = ?, price = ?, description = ?, user_id = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";;
+    private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name = ?;";
+    private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_id = ?";
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, user_id = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_name = ?;";;
 
+
+    // Danh sách tất cả sản phẩm
     public List<Products> selectAllUsers() {
         List<Products> products = new ArrayList<Products>();
         try (Connection connection = DatabaseConnector.getConnection();
@@ -100,7 +100,9 @@ public class UserDaoProduct {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()){
-                int product_id = resultSet.getInt("product_id");
+                int category_id  = resultSet.getInt("category_id");
+                String category_name = resultSet.getString("category_name");
+                System.out.println("ID: " + category_id + ", category_name: " + category_name);
             }
 
         } catch (SQLException e) {
@@ -117,7 +119,26 @@ public class UserDaoProduct {
         }
        return products;
     }
+// tìm kiếm sản phẩm theo tên
+      public Products findProducts(){
+        Products products = null;
 
-
+        try(Connection connection = DatabaseConnector.getConnection();
+        PreparedStatement statement = connection.prepareStatement(FIND_PRODUCT_BY_NAME)){
+            ResultSet resultSet = statement.executeQuery();
+            int product_id = resultSet.getInt("product_id");
+            String product_name = resultSet.getString("product_name");
+            int price = resultSet.getInt("price");
+            String description = resultSet.getString("description");
+            int user_id = resultSet.getInt("user_id");
+            int category_id = resultSet.getInt("category_id");
+            int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+            Timestamp created_at = resultSet.getTimestamp("created_at");
+            products = new Products(product_id,product_name,price,description,user_id,category_id,quantity_in_stock,created_at);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+       return products;
+      }
 
 }

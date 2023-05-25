@@ -352,7 +352,7 @@
             </div>
             
             <hr><!--horizontal line-->
-            <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
+            <p class="copyright">Copyright 2023 - C0223G1</p>
             
         </div>
     </div>

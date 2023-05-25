@@ -81,7 +81,8 @@ public class ProductServlet extends HttpServlet {
         int category_id = Integer.parseInt(request.getParameter("category_id"));
         int quantity_in_stock = Integer.parseInt(request.getParameter("quantity_in_stock"));
         Timestamp created_at = Timestamp.valueOf(request.getParameter("created_at"));
-        Products products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at);
+        String image = request.getParameter("image");
+        Products products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at,image);
         productDao.insertUser(products);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
         requestDispatcher.forward(request,response);

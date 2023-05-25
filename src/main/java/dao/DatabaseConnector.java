@@ -12,7 +12,7 @@ public class DatabaseConnector {
 
     static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver loaded successfully");
         } catch (ClassNotFoundException e) {
             System.out.println("Failed to load MySQL driver");

@@ -25,5 +25,8 @@ public class HelloServlet extends HttpServlet {
         request.setAttribute("listUser", listUser);
         request.getRequestDispatcher("/test.jsp").forward(request, response);
     }
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    }
 
 }

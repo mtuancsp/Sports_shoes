@@ -20,8 +20,15 @@ create table users
 create table categories
 (
     category_id   smallint unsigned not null
+<<<<<<< HEAD
+        primary key ,
+    category_name varchar(45)       not null,
+    constraint category_id_UNIQUE
+        unique (category_id)
+=======
         primary key,
     category_name varchar(45)       not null
+>>>>>>> 48791ac530086a972f437263010e01ab3b88567f
 );
 
 

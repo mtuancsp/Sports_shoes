@@ -10,12 +10,12 @@ public class Products {
     private int user_id;
     private int category_id;
     private int quantity_in_stock;
-    private Timestamp created_at;
+    private java.sql.Timestamp created_at;
 
     public Products() {
     }
 
-    public Products(int product_id, String product_name, int price, String description, int user_id, int category_id, int quantityInStock, Timestamp created_at) {
+    public Products(int product_id, String product_name, int price, String description, int user_id, int category_id, int quantityInStock, java.sql.Timestamp created_at) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.price = price;
@@ -82,11 +82,11 @@ public class Products {
         this.quantity_in_stock = quantity_in_stock;
     }
 
-    public Timestamp getCreated_at() {
+    public java.sql.Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Timestamp created_at) {
+    public void setCreated_at(java.sql.Timestamp created_at) {
         this.created_at = created_at;
     }
 }

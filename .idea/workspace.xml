@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="98e988be-6434-4dab-b9d0-83013068725e" name="Changes" comment="merge master">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/shoe_store/shoe_store/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/shoe_store/shoe_store/index.html" afterDir="false" />
+=======
+    <list default="true" id="98e988be-6434-4dab-b9d0-83013068725e" name="Changes" comment="web">
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/shoe_store" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/shoe_store" afterDir="false" />
+>>>>>>> 4b127bb0ee43bbd0d1ac6e9322eaec2f6e1b72ff
     </list>
 =======
     <list default="true" id="98e988be-6434-4dab-b9d0-83013068725e" name="Changes" comment="merge master" />
@@ -43,7 +48,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
         <option value="Class" />
+=======
+>>>>>>> 4b127bb0ee43bbd0d1ac6e9322eaec2f6e1b72ff
         <option value="Jsp File" />
       </list>
     </option>
@@ -54,7 +62,7 @@
         <entry key="$PROJECT_DIR$" value="tung" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/lc28-fashion-ecommerce-website" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
@@ -90,6 +98,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4b127bb0ee43bbd0d1ac6e9322eaec2f6e1b72ff
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
@@ -103,6 +114,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
 =======
@@ -121,6 +133,10 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
 >>>>>>> tuan
+=======
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> 4b127bb0ee43bbd0d1ac6e9322eaec2f6e1b72ff
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -128,6 +144,15 @@
     ]
   }
 }]]></component>
+<<<<<<< HEAD
+=======
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\C0223G1\Module3\caseStudy3\src\main\webapp\view" />
+      <recent name="D:\C0223G1\Module3\caseStudy3\src\main\webapp" />
+    </key>
+  </component>
+>>>>>>> 4b127bb0ee43bbd0d1ac6e9322eaec2f6e1b72ff
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="caseStudy3" />
@@ -268,7 +293,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+<<<<<<< HEAD
     <MESSAGE value="merge master" />
     <option name="LAST_COMMIT_MESSAGE" value="merge master" />
+=======
+    <MESSAGE value="web" />
+    <option name="LAST_COMMIT_MESSAGE" value="web" />
+>>>>>>> 4b127bb0ee43bbd0d1ac6e9322eaec2f6e1b72ff
   </component>
 </project>

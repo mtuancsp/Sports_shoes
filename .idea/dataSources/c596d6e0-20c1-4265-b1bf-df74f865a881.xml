@@ -1089,7 +1089,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="313" parent="302" name="address_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>3</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1186,7 +1186,7 @@ product_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="332" parent="304" name="category_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>6</AutoIncrement>
       <DasType>smallint unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1207,7 +1207,7 @@ product_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="336" parent="305" name="order_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1248,7 +1248,7 @@ product_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="344" parent="306" name="order_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1295,7 +1295,7 @@ product_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="354" parent="307" name="payment_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <DasType>tinyint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1346,7 +1346,7 @@ product_id</ColNames>
       <UnderlyingIndexName>payment_id_UNIQUE</UnderlyingIndexName>
     </key>
     <column id="365" parent="308" name="image_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>8</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1380,7 +1380,7 @@ product_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="372" parent="309" name="product_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>8</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1497,7 +1497,7 @@ order_id</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="396" parent="311" name="supplier_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>6</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1543,7 +1543,7 @@ order_id</ColNames>
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
     <column id="406" parent="312" name="user_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>8</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

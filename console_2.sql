@@ -1,4 +1,4 @@
-
+USE case_study_3;
 INSERT INTO users (username, password, phone, email, role, full_name, birthday, avatar_path)
 VALUES ('john_doe', 'password123', '1234567890', 'john.doe@example.com', 'customer', 'John Doe', '1990-01-01', NULL);
 

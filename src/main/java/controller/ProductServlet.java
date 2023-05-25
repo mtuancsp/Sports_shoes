@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,11 +40,36 @@ public class ProductServlet extends HttpServlet {
         requestDispatcher.forward(request,response);
     }
     private void showEditFrom(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException,SQLException{
-      String product_name = request.getParameter("product_name");
-
+     int product_id = Integer.parseInt(request.getParameter("product_id"));
 
 
     }
+
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException,SQLException{
+        int product_id = Integer.parseInt(request.getParameter("product_id"));
+        String product_name = request.getParameter("product_name");
+        int price = Integer.parseInt(request.getParameter("price"));
+        String description = request.getParameter("description");
+        int supplier_id = Integer.parseInt(request.getParameter("supplier_id"));
+        int category_id = Integer.parseInt(request.getParameter("category_id"));
+        int quantity_in_stock = Integer.parseInt(request.getParameter("quantity_in_stock"));
+        Timestamp created_at = Timestamp.valueOf(request.getParameter("created_at"));
+        Products products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at);
+        productDao.updateUser(products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
+        requestDispatcher.forward(request,response);
+
+    }
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException,SQLException {
+        int id = Integer.parseInt(request.getParameter("product_id"));
+        productDao.deleteProduct(id);
+        List<Products> products = productDao.selectAllProduct();
+        request.setAttribute("products",products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
+        requestDispatcher.forward(request,response);
+    }
+
+
 
 
 }

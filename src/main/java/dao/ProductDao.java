@@ -17,7 +17,7 @@ public class ProductDao {
     private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name = ?;";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_name = ?";
-    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_name = ?;";
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
 
 
     // Danh sách tất cả sản phẩm
@@ -81,12 +81,12 @@ public class ProductDao {
         return rowUpdated;
     }
 
-    public boolean deleteProduct(String product_name) throws SQLException{
+    public boolean deleteProduct(int product_id) throws SQLException{
         boolean rowDeleted;
         try (Connection connection = DatabaseConnector.getConnection();
             PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT_SQL);
         ){
-          statement.setString(1,product_name);
+          statement.setInt(1,product_id);
           rowDeleted = statement.executeUpdate() > 0;
         }
         return rowDeleted;

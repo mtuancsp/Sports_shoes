@@ -49,26 +49,22 @@
                     <div class="col-2">
                         <div class="form-container">
                             <div class="form-btn">
-                                <span onclick="login()">Register</span>
-                                <span onclick="register()">Login</span>
+                                <span onclick="login()">Login</span>
+                                <span onclick="register()">Register</span>
                                 <hr id="Indicator">
                             </div>
-                            <form id="LoginForm"  style="top: 80px">
-                                <input type="text" name="username" placeholder="Username">
-                                <input type="password" name="password" placeholder="Password">
-                                <input type="email" name="email" placeholder="Email">
-                                <input type="text" name="phone" placeholder="Phone">
-
-                                <button type="submit" class="btn">Register</button>
+                            <form id="LoginForm">
+                                <input type="text" placeholder="username">
+                                <input type="password" placeholder="password">
+                                <button type="submit" class="btn">Login</button>
+                                <a href="">Forgot password</a>
                             </form>
 
-                            <form id="RegForm" action="login" method="post" style="top: 110px">
-                                <p style="color: red" class="message">${message}</p>
-                                <br>
-                                <input name="username" type="text" placeholder="Username">
-                                <input name="password" type="password" placeholder="Password">
-                                <button type="submit" class="btn">Login</button>
-                                <a href=""><p>Forgot password</p></a>
+                            <form id="RegForm">
+                                <input type="text" placeholder="username">
+                                <input type="email" placeholder="email">
+                                <input type="password" placeholder="password">
+                                <button type="submit" class="btn">Register</button>
                             </form>
                         </div>
                     </div>

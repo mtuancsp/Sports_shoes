@@ -24,7 +24,7 @@
                         <li><a href="index.jsp">Home</a></li>
                          <li><a href="listProduct">Products</a></li>
                          <li><a href="">About</a></li>
-                         <li><a href="">Contact</a></li>
+                         <li><a href="contact.jsp">Contact</a></li>
                         <c:if test="${sessionScope.user == null}">
                          <li><a href="account.jsp">Login</a></li>
                         </c:if>

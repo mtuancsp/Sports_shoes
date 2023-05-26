@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProductDao {
@@ -20,6 +21,15 @@ public class ProductDao {
     private static final String SHOW_PRODUCT_DETAILS = "SELECT * FROM case_study.products WHERE product_id = ?";
     private static final String SEARCH_THE_FILTER = "SELECT * FROM case_study.products WHERE product_name LIKE ? AND price >= ? AND price <= ?";
 
+    public static void main(String[] args) {
+        ProductDao productDAO = new ProductDao();
+        List<Products> listProduct = productDAO.selectAllProduct();
+        listProduct.sort(Comparator.comparing(Products::getCreated_at));
+        List<Products> last8ProductList = new ArrayList<>(listProduct.subList(0, Math.min(8, listProduct.size())));
+        for (Products products : last8ProductList) {
+            System.out.println(products);
+        }
+    }
     // Danh sách tất cả sản phẩm
     public List<Products> selectAllProduct() {
         List<Products> products = new ArrayList<Products>();
@@ -45,6 +55,7 @@ public class ProductDao {
         }
         return products;
     }
+
     public void insertUser(Products products) throws SQLException {
         System.out.println(INSERT_PRODUCT_SQL);
         // try-with-resource statement will auto close the connection.
@@ -149,7 +160,7 @@ public class ProductDao {
         }
     }
 
-    public Products selectProducts(int productID) {
+    public Products findProductById(int productID) {
         Products products = null;
         try (
                 Connection connection = DatabaseConnector.getConnection();

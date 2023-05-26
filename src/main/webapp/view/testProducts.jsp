@@ -40,29 +40,7 @@
             color: #777;
         }
     </style>
-    <script>
-        function showNextProducts() {
-            let products = document.getElementsByClassName("product");
-            let visibleCount = 0;
 
-            for (let i = 0; i < products.length; i++) {
-                if (products[i].style.display === "none") {
-                    products[i].style.display = "block";
-                    visibleCount++;
-                    if (visibleCount === 4) {
-                        break;
-                    }
-                }
-                if (i === products.length - 1) {
-                    let messageElement = document.getElementById("endMessage");
-                    if (messageElement) {
-                        messageElement.style.display = "block";
-                    }
-                }
-            }
-        }
-
-    </script>
 
 </head>
 <body>
@@ -166,7 +144,28 @@
             selectElement.value = sortOption;
         }
     });
+</script>
+<script>
+    function showNextProducts() {
+        let products = document.getElementsByClassName("product");
+        let visibleCount = 0;
 
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].style.display === "none") {
+                products[i].style.display = "block";
+                visibleCount++;
+                if (visibleCount === 4) {
+                    break;
+                }
+            }
+            if (i === products.length - 1) {
+                let messageElement = document.getElementById("endMessage");
+                if (messageElement) {
+                    messageElement.style.display = "block";
+                }
+            }
+        }
+    }
 
 </script>
 

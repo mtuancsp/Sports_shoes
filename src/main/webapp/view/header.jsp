@@ -9,7 +9,7 @@
       </div>
       <nav>
         <ul id="MenuItems">
-          <li><a href="index.jsp">Home</a></li>
+          <li><a href="home">Home</a></li>
           <li><a href="listProduct">Products</a></li>
           <li><a href="contact.jsp">Contact</a></li>
           <c:if test="${sessionScope.user == null}">

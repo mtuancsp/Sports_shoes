@@ -94,4 +94,18 @@ public class Products {
     public void setImage(String image) {
         this.image = image;
     }
+    @Override
+    public String toString() {
+        return "Products{" +
+                "product_id=" + product_id +
+                ", product_name='" + product_name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", category='" + category + '\'' +
+                ", quantity_in_stock=" + quantity_in_stock +
+                ", created_at=" + created_at +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }

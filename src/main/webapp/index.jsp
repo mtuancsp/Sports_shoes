@@ -9,7 +9,6 @@
       font-family: 'Helvetica Neue', sans-serif;
       text-align: center;
       color: #333;
-      background-color: #f1f1f1;
       margin: 0;
       padding: 0;
     }
@@ -23,7 +22,7 @@
       color: #0056b3;
     }
     header {
-      background-color: blue;
+      background-color: darkblue;
       padding: 20px;
       text-align: center;
     }
@@ -43,12 +42,12 @@
     }
 
     .container a {
-      color: blue;
+      color: darkblue;
       font-size: 30px;
     }
 
     footer {
-      background-color: blue;
+      background-color: darkblue;
       color: #fff;
       padding: 10px;
       text-align: center;
@@ -64,7 +63,7 @@
   <h1>Hello World!</h1>
 </header>
 <div class="container">
-  <a href="/view/index.jsp">Case study Module 3 - Team 2</a><br><br>
+  <a href="/view/home">Case study Module 3 - Team 2</a><br><br>
   <a href="/test">Test</a>
 </div>
 <footer>

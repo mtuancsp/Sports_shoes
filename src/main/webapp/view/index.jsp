@@ -20,6 +20,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
+<video muted="muted" loop="true" autoplay="true" width="100%" height="" src="./images/banner_video.mp4"></video>
 <div class="container">
     <div class="row">
         <div class="col-2">
@@ -107,109 +108,24 @@
     </div>
 
 
+    <!--new row for the latest product-->
     <h2 class="title">Latest Products</h2>
     <div class="row">
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-5.jpg"></a>
-            <h4>Flat Heel gray hoes</h4>
-            <div class="rating">
-                <!--(before this added awesome4 cdn font link to the head)added a cdn link by searching font awesome4 icon and from the site  search the star entering the first option and getting a link of this fa-star*-->
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <i class="fa fa-star-o"></i>
+        <c:forEach var="product" items="${productList}" begin="0" end="7">
+            <div class="col-4 product">
+                <a href="/view/product_detail?id=${product.product_id}"><img src="${product.image}"></a>
+                <a href="/view/product_detail?id=${product.product_id}"><h4>${product.product_name}</h4></a>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o" ></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$${product.price}</p>
             </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-3.jpg"></a>
-            <h4>Lace-Fastening black Shoes</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$21.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-7.jpg"></a>
-            <h4>HRX Men's cotton socks</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$09.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-2.jpg"></a>
-            <h4>Lace-Up Running Shoes</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$35.00</p>
-        </div>
-    </div>
-    <!--new row for the latest product-->
-    <div class="row">
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-7.jpg"></a>
-            <h4>HRX cotton socks</h4>
-            <div class="rating">
-                <!--(before this added awesome4 cdn font link to the head)added a cdn link by searching font awesome4 icon and from the site  search the star entering the first option and getting a link of this fa-star*-->
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$10.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-10.jpg"></a>
-            <h4>Flat Lace-Fastening Shoes</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$48.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-11.jpg"></a>
-            <h4>Loafers Men (Gray)</h4>
-            <div class="rating">
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$15.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-12.jpg"></a>
-            <h4>Lace-Fastening white Shoes</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$21.00</p>
-        </div>
+        </c:forEach>
+
     </div>
 </div>
 

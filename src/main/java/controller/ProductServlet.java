@@ -7,10 +7,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", value = "/view/listProduct")
@@ -41,7 +39,7 @@ public class ProductServlet extends HttpServlet {
 
     }
 
-    private void listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    public void listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<Products> listProduct = productDao.selectAllProduct();
         request.setAttribute("productList", listProduct);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/testProducts.jsp");
@@ -50,7 +48,7 @@ public class ProductServlet extends HttpServlet {
 
     private void showEditFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int product_id = Integer.parseInt(request.getParameter("product_id"));
-        Products existingProducts = productDao.selectProducts(product_id);
+        Products existingProducts = productDao.findProductById(product_id);
         request.setAttribute("products", existingProducts);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
         requestDispatcher.forward(request, response);

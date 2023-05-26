@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-6">
                 <div class="map_container">
-                    <div class="map-responsive">
+                    <div class="map-responsive" style="height: 500px">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.6210838701665!2d105.7660288!3d21.035710099999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b9444c676b%3A0xe713200541b7456d!2sCodeGym!5e0!3m2!1sen!2suk!4v1622058671683!5m2!1sen!2suk" width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%"
                                 allowfullscreen></iframe>
                     </div>

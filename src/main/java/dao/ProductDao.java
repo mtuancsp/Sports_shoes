@@ -12,11 +12,11 @@ import java.util.List;
 public class ProductDao {
 
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
-    private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier_id, category_id, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier, category, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM case_study.products WHERE product_id = ?";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name = ?;";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_name = ?";
-    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
     private static final String SHOW_PRODUCT_DETAILS = "SELECT * FROM case_study.products WHERE product_id = ?";
     private static final String SEARCH_THE_FILTER = "SELECT * FROM case_study.products WHERE product_name LIKE ? AND price >= ? AND price <= ?";
 
@@ -33,8 +33,8 @@ public class ProductDao {
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
-                String supplier = resultSet.getString("supplier_id");
-                String category = resultSet.getString("category_id");
+                String supplier = resultSet.getString("supplier");
+                String category = resultSet.getString("category");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
                 String image = resultSet.getString("image");
@@ -107,12 +107,12 @@ public class ProductDao {
                   String product_name = resultSet.getString("product_name");
                   int price = resultSet.getInt("price");
                   String description = resultSet.getString("description");
-                  String supplier_id = resultSet.getString("supplier");
-                  String category_id = resultSet.getString("category");
+                  String supplier = resultSet.getString("supplier");
+                  String category = resultSet.getString("category");
                   int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                   Timestamp created_at = resultSet.getTimestamp("created_at");
                   String image = resultSet.getString("image");
-                  products = new Products(product_id, product_name, price, description, supplier_id, category_id, quantity_in_stock, created_at, image);
+                  products = new Products(product_id, product_name, price, description, supplier, category, quantity_in_stock, created_at, image);
               }
           } catch (SQLException e) {
               e.printStackTrace();

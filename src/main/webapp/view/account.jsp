@@ -15,26 +15,7 @@
     </head>
     <body>
         <!--<div class ="header">-->
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <a href="index.jsp"><img src="images/logo.png" width="125px"></a>
-                </div>
-                 <nav>
-                    <ul id="MenuItems">
-                        <li><a href="index.jsp">Home</a></li>
-                         <li><a href="listProduct">Products</a></li>
-                         <li><a href="">About</a></li>
-                         <li><a href="">Contact</a></li>
-                         <li><a href="account.jsp">Account</a></li>
-
-                    </ul>
-                </nav>
-                <a href="cart.jsp"><img src="images/cart.png" width="30px" height="30px"></a>
-                <img src="images/menu.png" class="menu-icon" onClick="menutoggle()" >
-            </div>
-           
-        </div>
+        <jsp:include page="header.jsp" />
     <!--</div>-->
     
         
@@ -49,74 +30,37 @@
                     <div class="col-2">
                         <div class="form-container">
                             <div class="form-btn">
-                                <span onclick="login()">Login</span>
-                                <span onclick="register()">Register</span>
+                                <span onclick="login()">Register</span>
+                                <span onclick="register()">Login</span>
                                 <hr id="Indicator">
                             </div>
-                            <form id="LoginForm">
-                                <input type="text" placeholder="username">
-                                <input type="password" placeholder="password">
-                                <button type="submit" class="btn">Login</button>
-                                <a href="">Forgot password</a>
+                            <form id="LoginForm"  style="top: 80px">
+                                <input type="text" name="username" placeholder="Username">
+                                <input type="password" name="password" placeholder="Password">
+                                <input type="email" name="email" placeholder="Email">
+                                <input type="text" name="phone" placeholder="Phone">
+
+                                <button type="submit" class="btn">Register</button>
                             </form>
 
-                            <form id="RegForm">
-                                <input type="text" placeholder="username">
-                                <input type="email" placeholder="email">
-                                <input type="password" placeholder="password">
-                                <button type="submit" class="btn">Register</button>
+                            <form id="RegForm" action="login" method="post" style="top: 100px">
+                                <p style="color: red" class="message">${message}</p>
+                                <br>
+                                <input name="username" type="text" placeholder="Username">
+                                <input name="password" type="password" placeholder="Password">
+                                <button type="submit" class="btn">Login</button>
+                                <a href=""><p>Forgot password</p></a>
                             </form>
                         </div>
                     </div>
                 </div>
-                    
+
             </div>
         </div>
         
        
         <!----------------------------------footer------------------------------------->
-        <div class ="footer">
-        <div class="container">
-            
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>Download App for Android and ios mobile phone.</p>
-                    <div class="app-logo">
-                        <img src="images/play-store.png" alt="">
-                        <img src="images/app-store.png" alt="">
-                    </div>
-                </div>
-                <div class="footer-col-2">
-                    <img src="images/logo-white.png">
-                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                   <ul>
-                       <li>Coupons</li>
-                       <li>Blog Post</li>
-                       <li>Return Policy</li>
-                       <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-col-4">
-                    <h3>Follow us</h3>
-                   <ul>
-                       <li>Facebook</li>
-                       <li>Twitter</li>
-                       <li>Instagram</li>
-                       <li>Youtube</li>
-                    </ul>
-                </div>
-                
-            </div>
-            
-            <hr><!--horizontal line-->
-            <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
-            
-        </div>
-    </div>
+        <jsp:include page="footer.jsp" />
         
         
         <!-----------------------------------js for toggle menu-------------------------------------->

@@ -4,7 +4,10 @@ import dao.UserDAO;
 import model.Users;
 
 import java.io.*;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -17,7 +20,11 @@ public class HelloServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        listUsers(request, response);
+      listUsers(request,response);
+    }
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException,ServletException {
+
     }
 
     private void listUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,8 +32,25 @@ public class HelloServlet extends HttpServlet {
         request.setAttribute("listUser", listUser);
         request.getRequestDispatcher("/test.jsp").forward(request, response);
     }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/create.jsp");
+        dispatcher.forward(request, response);
     }
-
+    private void insertUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String full_name = request.getParameter("full_name");
+        Users newUser = new Users(username,password,phone,email,full_name);
+        userDAO.insertUser(newUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/create.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("user_id"));
+        userDAO.deleteUser(id);
+    }
 }

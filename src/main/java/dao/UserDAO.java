@@ -8,12 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 public class UserDAO {
-    private static final String SELECT_ALL_USERS = "select * from case_study.users";
-    private static final String DELETE_USERS_SQL = "delete from case_study.users where user_id = ?;";
-    private static final String FIND_USER_BY_PHONE = "select user_id,full_name,email,phone,birthday from case_study.users where phone =?";
-    private static final String SORT_BY_NAME = "select user_id,full_name,email,phone,birthday from case_study.users order by username;";
-    private static final String SORT_BY_CREATE_AT = "select user_id,full_name,email,phone,birthday from case_study.users order by created_at;";
-    private static final String INSERT_USERS_SQL = "insert into case_study.users(username, password, phone, email, full_name, birthday) values  (?,?,?,?,?,?);";
+    private static final String SELECT_ALL_USERS = "select * from users";
+    private static final String DELETE_USERS_BY_ID = "delete from users where user_id = ?;";
+    private static final String FIND_USER_BY_PHONE = "select user_id,full_name,email,phone,birthday from users where phone =?";
+    private static final String SORT_BY_NAME = "select user_id,full_name,email,phone,birthday from users order by username;";
+    private static final String SORT_BY_CREATE_AT = "select user_id,full_name,email,phone,birthday from users order by created_at;";
+    private static final String INSERT_USERS_SQL = "insert into users(username,password,phone,email,full_name) values  (?,?,?,?,?);";
     public void insertUser(Users user) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
         try (Connection connection = DatabaseConnector.getConnection();
@@ -23,7 +23,6 @@ public class UserDAO {
             preparedStatement.setString(3, user.getPhone());
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getFull_name());
-            preparedStatement.setDate(6, (java.sql.Date) user.getBirthday());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         }
@@ -55,7 +54,7 @@ public class UserDAO {
     public boolean deleteUser(int id) throws SQLException{
         boolean rowDeleted;
         try( Connection connection = DatabaseConnector.getConnection();
-        PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL)) {
+        PreparedStatement statement = connection.prepareStatement(DELETE_USERS_BY_ID)) {
             statement.setInt(1,id);
             System.out.println(statement);
             rowDeleted = statement.executeUpdate()>0;

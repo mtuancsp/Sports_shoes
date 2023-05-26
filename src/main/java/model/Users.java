@@ -16,6 +16,14 @@ public class Users {
     private Timestamp created_at;
     private String status;
 
+    public Users(String username, String password, String phone, String email, String full_name) {
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+        this.full_name = full_name;
+    }
+
     public Users(int user_id, String username, String password, String phone, String email, String role, String full_name, Date birthday, String avatar_path, java.sql.Timestamp created_at, String status) {
         this.user_id = user_id;
         this.username = username;

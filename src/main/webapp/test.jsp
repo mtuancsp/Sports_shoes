@@ -97,7 +97,7 @@
   </table>
 </div>
 
-<h2><a href="/users?action=create">Add New User</a></h2>
+<h2><a href="/create.jsp">Add New User</a></h2>
 
 <script>
   window.onload = function () {

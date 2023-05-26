@@ -63,10 +63,14 @@
 
 <!------------------------------ cart items details------------------------------>
 <section class="contact_section layout_padding" style="margin-top: 50px">
+  <div></div>
   <div class="container">
     <div class="row">
+      <div>
+        <img src="${user.avatar_path}" alt="Cannot find avatar" style="height: 240px;width: 240px" /><br>
+        <button>Add avatar</button>
+      </div>
       <div class="col-md-6">
-        <form id="contact" action="" style="font-size: 20px; padding: 20px; border: 2px solid #ff523b; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
           <h2 style="color: #ff523b;height: 60px;font-size: 36px">INFORMATION</h2>
           <div style="height: 60px; width: 300px;">
             <input type="text" placeholder="Full name" />
@@ -84,7 +88,6 @@
             <input type="text" class="message-box" placeholder="Password" />
           </div>
           <button style="height: 40px; width: 100px; color: white; background-color: #ff523b; border-radius: 10px;">update</button>
-        </form>
       </div>
     </div>
   </div>

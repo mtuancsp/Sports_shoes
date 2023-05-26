@@ -24,12 +24,12 @@
                         <li><a href="index.jsp">Home</a></li>
                          <li><a href="listProduct">Products</a></li>
                          <li><a href="">About</a></li>
-                         <li><a href="">Contact</a></li>
+                         <li><a href="contact.jsp">Contact</a></li>
                         <c:if test="${sessionScope.user == null}">
                          <li><a href="account.jsp">Login</a></li>
                         </c:if>
                         <c:if test="${sessionScope.user!= null}">
-                            <li><a href="/logout" style="color: red;">Logout &nbsp;<img src="images/exit.png" alt="exit" width="20px" height="20px"></a></li>
+                            <li><a href="/logout" style="color: red;">Logout &nbsp;<img style="padding-top: 3px" src="images/logout.png" alt="exit" width="20px" height="20px"></a></li>
                             <li><a style="color: red;" href=""><b>${sessionScope.user.getUsername()}</b></a></li>
                         </c:if>
                     </ul>

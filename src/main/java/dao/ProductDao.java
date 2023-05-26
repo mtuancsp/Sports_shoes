@@ -1,6 +1,5 @@
 package dao;
 
-import model.Categories;
 import model.Products;
 
 import java.io.BufferedReader;
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ProductDao {
 
@@ -20,7 +18,6 @@ public class ProductDao {
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_name = ?";
     private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category_id = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
     private static final String SHOW_PRODUCT_DETAILS = "SELECT * FROM case_study.products WHERE product_id = ?";
-
     private static final String SEARCH_THE_FILTER = "SELECT * FROM case_study.products WHERE product_name LIKE ? AND price >= ? AND price <= ?";
 
     // Danh sách tất cả sản phẩm
@@ -36,12 +33,12 @@ public class ProductDao {
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
-                int supplier_id = resultSet.getInt("supplier_id");
-                int category_id = resultSet.getInt("category_id");
+                String supplier = resultSet.getString("supplier_id");
+                String category = resultSet.getString("category_id");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
                 String image = resultSet.getString("image");
-                products.add((new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at,image)));
+                products.add((new Products(product_id,product_name,price,description,supplier,category,quantity_in_stock,created_at,image)));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -57,8 +54,8 @@ public class ProductDao {
             preparedStatement.setString(2, products.getProduct_name());
             preparedStatement.setInt(3, products.getPrice());
             preparedStatement.setString(4, products.getDescription());
-            preparedStatement.setInt(5, products.getSupplier_id());
-            preparedStatement.setInt(6, products.getCategory_id());
+            preparedStatement.setString(5, products.getSupplier());
+            preparedStatement.setString(6, products.getCategory());
             preparedStatement.setInt(7, products.getQuantity_in_stock());
             preparedStatement.setTimestamp(8, products.getCreated_at());
             System.out.println(preparedStatement);
@@ -76,8 +73,8 @@ public class ProductDao {
             preparedStatement.setString(2, products.getProduct_name());
             preparedStatement.setInt(3, products.getPrice());
             preparedStatement.setString(4, products.getDescription());
-            preparedStatement.setInt(5, products.getSupplier_id());
-            preparedStatement.setInt(6, products.getCategory_id());
+            preparedStatement.setString(5, products.getSupplier());
+            preparedStatement.setString(6, products.getCategory());
             preparedStatement.setInt(7, products.getQuantity_in_stock());
             preparedStatement.setTimestamp(8, products.getCreated_at());
             rowUpdated = preparedStatement.executeUpdate() > 0;
@@ -95,38 +92,7 @@ public class ProductDao {
         }
         return rowDeleted;
     }
-// danh sách nhóm san phẩm
-    public List<Categories> getProductsGroups(){
-        List<Categories> products =   new ArrayList<>();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try{
-            String sql = "SELECT * FROM case_study.categories ";
-            connection = DatabaseConnector.getConnection();
-            statement = connection.prepareStatement(sql);
-            resultSet = statement.executeQuery();
 
-            while (resultSet.next()){
-                int category_id  = resultSet.getInt("category_id");
-                String category_name = resultSet.getString("category_name");
-                System.out.println("ID: " + category_id + ", category_name: " + category_name);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try{
-            if( statement != null )
-                if( resultSet != null)
-                    statement.close();
-            if(connection != null)
-                connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();}
-        }
-       return products;
-    }
 // tìm kiếm sản phẩm theo tên
       public Products findProducts(String name) {
 
@@ -134,15 +100,15 @@ public class ProductDao {
 
           try (Connection connection = DatabaseConnector.getConnection();
                PreparedStatement statement = connection.prepareStatement(FIND_PRODUCT_BY_NAME)) {
-              statement.setString(1, name);
+              statement.setString(1, "%" + name + "%");
               ResultSet resultSet = statement.executeQuery();
               if (resultSet.next()) {
                   int product_id = resultSet.getInt("product_id");
                   String product_name = resultSet.getString("product_name");
                   int price = resultSet.getInt("price");
                   String description = resultSet.getString("description");
-                  int supplier_id = resultSet.getInt("supplier_id");
-                  int category_id = resultSet.getInt("category_id");
+                  String supplier_id = resultSet.getString("supplier");
+                  String category_id = resultSet.getString("category");
                   int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                   Timestamp created_at = resultSet.getTimestamp("created_at");
                   String image = resultSet.getString("image");
@@ -197,12 +163,12 @@ public class ProductDao {
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
-                int supplier_id = resultSet.getInt("supplier_id");
-                int category_id = resultSet.getInt("category_id");
+                String supplier = resultSet.getString("supplier");
+                String category = resultSet.getString("category");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
                 String image = resultSet.getString("image");
-                products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at,image);
+                products = new Products(product_id,product_name,price,description,supplier,category,quantity_in_stock,created_at,image);
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -225,12 +191,12 @@ public class ProductDao {
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
-                int supplier_id = resultSet.getInt("supplier_id");
-                int category_id = resultSet.getInt("category_id");
+                String supplier = resultSet.getString("supplier_id");
+                String category = resultSet.getString("category_id");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
                 String image = resultSet.getString("image");
-                products = new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at,image);
+                products = new Products(product_id,product_name,price,description,supplier,category,quantity_in_stock,created_at,image);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -255,12 +221,12 @@ public class ProductDao {
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
                 String description = resultSet.getString("description");
-                int supplier_id = resultSet.getInt("supplier_id");
-                int category_id = resultSet.getInt("category_id");
+                String supplier = resultSet.getString("supplier_id");
+                String category = resultSet.getString("category_id");
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
                 String image = resultSet.getString("image");
-                products.add((new Products(product_id,product_name,price,description,supplier_id,category_id,quantity_in_stock,created_at,image)));
+                products.add((new Products(product_id,product_name,price,description,supplier,category,quantity_in_stock,created_at,image)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -276,6 +242,35 @@ public class ProductDao {
                 e.printStackTrace();
             }
         }
+        return products;
+    }
+    // phân trang
+    public List<Products> getPageOfProducts(int page, int pageSize) throws SQLException {
+        List<Products> products = new ArrayList<>();
+        // Tính toán offset dựa trên số trang và kích thước trang
+        int offset = (page - 1) * pageSize;
+        Connection connection = DatabaseConnector.getConnection();
+        String sql = "SELECT * FROM products LIMIT ? OFFSET ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, pageSize);
+        statement.setInt(2, offset);
+        // Thực thi câu lệnh SQL và lấy dữ liệu từ ResultSet
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            int product_id = resultSet.getInt("product_id");
+            String product_name = resultSet.getString("product_name");
+            int price = resultSet.getInt("price");
+            String description = resultSet.getString("description");
+            String supplier = resultSet.getString("supplier");
+            String category = resultSet.getString("category");
+            int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+            Timestamp created_at = resultSet.getTimestamp("created_at");
+            String image = resultSet.getString("image");
+            products.add((new Products(product_id,product_name,price,description,supplier,category,quantity_in_stock,created_at,image)));
+        }
+        resultSet.close();
+        statement.close();
+
         return products;
     }
 

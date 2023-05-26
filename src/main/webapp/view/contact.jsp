@@ -27,34 +27,27 @@
         width: 450px;
         height: 443px;
     }
+     body {
+         background: radial-gradient(#fff, #ffd6d6);
+         text-align: center;
+         font-family: 'Poppins', sans-serif;
+         color: #ff523b;
+     }
+     h2 {
+         color: #ff523b;
+         font-size: 36px;
+     }
 </style>
 </head>
 <body>
 <!--<div class ="header">-->
-<div class="container">
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.jsp"><img src="images/logo.png" width="125px"></a>
-        </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.jsp">Home</a></li>
-                <li><a href="listProduct">Products</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="account.jsp">Account</a></li>
-
-            </ul>
-        </nav>
-        <a href="cart.jsp"><img src="images/cart.png" width="30px" height="30px"></a>
-        <img src="images/menu.png" class="menu-icon" onClick="menutoggle()" >
-    </div>
-
-</div>
+<jsp:include page="header.jsp" />
 <!--</div>-->
 
 
 <!------------------------------ cart items details------------------------------>
+<h2>CodeGym - C0223G1</h2>
+<h2>Team 2</h2>
     <div class="container abc">
         <div class="row">
             <div class="col-md-6">
@@ -88,48 +81,7 @@
     </div>
 
 <!----------------------------------footer------------------------------------->
-<div class ="footer">
-    <div class="container">
-
-        <div class="row">
-            <div class="footer-col-1">
-                <h3>Download Our App</h3>
-                <p>Download App for Android and ios mobile phone.</p>
-                <div class="app-logo">
-                    <img src="images/play-store.png" alt="">
-                    <img src="images/app-store.png" alt="">
-                </div>
-            </div>
-            <div class="footer-col-2">
-                <img src="images/logo-white.png">
-                <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
-            </div>
-            <div class="footer-col-3">
-                <h3>Useful Links</h3>
-                <ul>
-                    <li>Coupons</li>
-                    <li>Blog Post</li>
-                    <li>Return Policy</li>
-                    <li>Join Affiliate</li>
-                </ul>
-            </div>
-            <div class="footer-col-4">
-                <h3>Follow us</h3>
-                <ul>
-                    <li>Facebook</li>
-                    <li>Twitter</li>
-                    <li>Instagram</li>
-                    <li>Youtube</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <hr><!--horizontal line-->
-        <p class="copyright">Copyright 2021 - Apurba Kr. Pramanik</p>
-
-    </div>
-</div>
+<jsp:include page="footer.jsp" />
 
 
 <!-----------------------------------js for toggle menu-------------------------------------->

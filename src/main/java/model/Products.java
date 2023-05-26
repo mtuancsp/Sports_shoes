@@ -5,21 +5,21 @@ public class Products {
     private String product_name;
     private int price;
     private String description;
-    private int supplier_id;
-    private int category_id;
+    private String supplier;
+    private String category;
     private int quantity_in_stock;
     private java.sql.Timestamp created_at;
     private String image;
     public Products() {
     }
 
-    public Products(int product_id, String product_name, int price, String description, int supplier_id, int category_id, int quantityInStock, java.sql.Timestamp created_at, String image) {
+    public Products(int product_id, String product_name, int price, String description, String supplier, String category, int quantityInStock, java.sql.Timestamp created_at, String image) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.price = price;
         this.description = description;
-        this.supplier_id = supplier_id;
-        this.category_id = category_id;
+        this.supplier = supplier;
+        this.category = category;
         this.quantity_in_stock = quantityInStock;
         this.created_at = created_at;
         this.image = image;
@@ -57,20 +57,20 @@ public class Products {
         this.description = description;
     }
 
-    public int getSupplier_id() {
-        return supplier_id;
+    public String getSupplier() {
+        return supplier;
     }
 
-    public void setSupplier_id(int supplier_id) {
-        this.supplier_id = supplier_id;
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getQuantity_in_stock() {

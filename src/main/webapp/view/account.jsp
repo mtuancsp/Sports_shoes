@@ -59,7 +59,7 @@
                                 <button type="submit" class="btn">Login</button>
                                 <a href="">Forgot password</a>
                             </form>
-                            
+
                             <form id="RegForm">
                                 <input type="text" placeholder="username">
                                 <input type="email" placeholder="email">

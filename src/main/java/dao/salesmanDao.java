@@ -1,2 +1,5 @@
-package dao;public class salesmanDao {
+package dao;
+
+public class salesmanDao {
+
 }

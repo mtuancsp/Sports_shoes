@@ -1,2 +1,5 @@
-package dao;public class ClientDao {
+package dao;
+
+public class ClientDao {
+
 }

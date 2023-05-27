@@ -11,10 +11,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
         <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
     </head>
     <body>
-        <!--<div class ="header">-->
+    <!--<div class ="header">-->
         <jsp:include page="header.jsp" />
     <!--</div>-->
     
@@ -66,7 +65,7 @@
         <!-----------------------------------js for toggle menu-------------------------------------->
         <script>
             var menuItems=document.getElementById("MenuItems");
-            
+
             MenuItems.style.maxHeight="0px";
             function menutoggle(){
                 if(MenuItems.style.maxHeight == "0px"){

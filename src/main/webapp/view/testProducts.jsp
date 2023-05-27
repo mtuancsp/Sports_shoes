@@ -108,7 +108,6 @@
         <button class="show-more-btn" onclick="showNextProducts()">Show More</button>
 </div>
 
-
 <!----------------------------------footer------------------------------------->
 <jsp:include page="footer.jsp" />
 

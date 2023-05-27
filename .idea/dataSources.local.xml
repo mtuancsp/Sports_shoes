@@ -12,8 +12,9 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="schema">
-            <name qname="@" />
             <name qname="case_study" />
+            <name qname="@" />
+            <name qname="casestudy" />
           </node>
         </introspection-scope>
       </schema-mapping>

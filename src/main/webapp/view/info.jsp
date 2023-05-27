@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Products" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -34,6 +39,13 @@
     #contact input {
       background-color: #ffaf96;
     }
+    #test{
+        border:3px solid #00ff00;
+        width:400px;
+        height:400px;
+        overflow-x:hidden;
+        overflow-y:auto;
+    }
   </style>
 </head>
 <body>
@@ -52,24 +64,42 @@
         <button>Add avatar</button>
       </div>
       <div class="col-md-6">
+          <form method="post">
           <h2 style="color: #ff523b;height: 60px;font-size: 36px">INFORMATION</h2>
+              <c:if test="${user != null}">
+                  <input type="hidden" name="id" value="<c:out value='${user.user_id}' />"/>
+              </c:if>
           <div style="height: 60px; width: 300px;">
-            <input type="text" placeholder="Full name" />
+            <input type="text" value="<c:out value='${user.full_name}'/>" />
           </div>
           <div style="height: 60px; width: 300px;">
-            <input type="text" placeholder="Birthday" />
+            <input type="text" value="<c:out value='${user.birthday}'/>" />
           </div>
           <div style="height: 60px; width: 300px;">
-            <input type="email" placeholder="Email" />
+            <input type="email"value="<c:out value='${user.email}'/>" />
           </div>
           <div style="height: 60px; width: 300px;">
-            <input type="text" placeholder="Phone" />
+            <input type="text" value="<c:out value='${user.phone}'/>" />
           </div>
           <div style="height: 60px; width: 300px;">
-            <input type="text" class="message-box" placeholder="Password" />
+            <input type="text" value="<c:out value='${user.password}'/>" />
           </div>
           <button style="height: 40px; width: 100px; color: white; background-color: #ff523b; border-radius: 10px;">update</button>
+          </form>
       </div>
+        <div id="test">
+           <c:forEach items="${products}" var = "item">
+               <p>${item.getProduct_id}</p>
+               <p>${item.getProduct_name}</p>
+               <p>${item.getPrice}</p>
+               <p>${item.getDescription}</p>
+               <p>${item.getSupplier}</p>
+               <p>${item.getCategory}</p>
+               <p>${item.getQuantity_in_stock}</p>
+               <p>${item.getCreated_at}</p>
+               <img src="${item.getImage}">
+           </c:forEach>
+        </div>
     </div>
   </div>
 </section>

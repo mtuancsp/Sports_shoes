@@ -227,10 +227,11 @@ public class ProductDao {
         }
     }
 
-    public Products findProductById(int productID) {
+    public Products findProductById(int productID) throws SQLException {
         Products products = null;
+        Connection connection = DatabaseConnector.getConnection();
+
         try (
-                Connection connection = DatabaseConnector.getConnection();
                 PreparedStatement statement = connection.prepareStatement(SELECT_PRODUCT_BY_ID);
                 ){
             statement.setInt(1,productID);

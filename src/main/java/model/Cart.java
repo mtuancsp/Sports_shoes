@@ -7,6 +7,7 @@ import java.util.List;
 public class Cart {
     private int user_id;
     private int product_id;
+    private Products product;
     private int quantity;
     private Timestamp created_at;
 
@@ -17,6 +18,14 @@ public class Cart {
         this.created_at = created_at;
     }
 
+    public Cart(Products product, int quantity) {}
+    public Products getProduct() {
+        return product;
+    }
+
+    public void setProduct(Products product) {
+        this.product = product;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -50,33 +59,7 @@ public class Cart {
         this.created_at = created_at;
     }
 
-    private List<Products> items;
-
     public Cart() {
-        this.items = new ArrayList<>();
     }
 
-    public void addItem(Products product) {
-        this.items.add(product);
-    }
-
-    public void removeItem(Products product) {
-        this.items.remove(product);
-    }
-
-    public List<Products> getItems() {
-        return this.items;
-    }
-
-    public int getItemCount() {
-        return this.items.size();
-    }
-
-    public double getTotalPrice() {
-        double totalPrice = 0.0;
-        for (Products product : this.items) {
-            totalPrice += product.getPrice();
-        }
-        return totalPrice;
-    }
 }

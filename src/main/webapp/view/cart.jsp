@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -29,68 +30,86 @@
             <th>Quantity</th>
             <th>Subtotal</th>
         </tr>
-        <tr data-price="50.00" data-subtotal="50.00">
-            <td>
-                <div class="cart-info">
-                    <img src="images/buy-1.jpg">
-                    <div>
-                        <p>Red Printed T-Shirt</p>
-                        <small>Price: $50.00</small><br>
-                        <a href="">Remove</a>
+        <c:forEach items="${cartItems}" var="item">
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="${item.getProduct().getImage()}" alt="">
+                        <div>
+                            <p>${item.getProduct().getProduct_name()}</p>
+                            <small class="price">$${item.getProduct().getPrice()}</small><br>
+                            <a href="">Remove</a>
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td><input type="number" min="0" value="1" oninput="updateSubtotal(this)"></td>
-            <td class="sum">$50.00</td>
-        </tr>
-        <tr data-price="50.00" data-subtotal="50.00">
-            <td>
-                <div class="cart-info">
-                    <img src="images/buy-2.jpg">
-                    <div>
-                        <p>Red Printed T-Shirt</p>
-                        <small>Price: $50.00</small><br>
-                        <a href="">Remove</a>
-                    </div>
-                </div>
-            </td>
-            <td><input type="number" min="0" value="1" oninput="updateSubtotal(this)"></td>
-            <td class="sum">$50.00</td>
-        </tr>
-        <tr data-price="50.00" data-subtotal="50.00">
-            <td>
-                <div class="cart-info">
-                    <img src="images/buy-3.jpg">
-                    <div>
-                        <p>Red Printed T-Shirt</p>
-                        <small>Price: $50.00</small><br>
-                        <a href="">Remove</a>
-                    </div>
-                </div>
-            </td>
-            <td><input type="number" min="0" value="1" oninput="updateSubtotal(this)"></td>
-            <td class="sum">$50.00</td>
-        </tr>
+                </td>
+                <td><input type="number" min="0" value="${item.getQuantity()}" name="quantity" class="quantity-input"></td>
+                <td class="subtotal">$${item.getProduct().getPrice() * item.getQuantity()}</td>
+            </tr>
+        </c:forEach>
     </table>
 
     <div class="total-price">
-        <table >
+        <table>
             <tr>
                 <td>Subtotal</td>
-                <td>$0</td>
+                <td id="subtotal">$0</td>
             </tr>
             <tr>
                 <td>Tax</td>
-                <td>$0</td>
+                <td id="tax">$0</td>
             </tr>
             <tr>
                 <td>Total</td>
-                <td>$0</td>
+                <td id="total">$0</td>
             </tr>
-            <tr><td colspan="2"><a style="color: white; padding: 10px 20px; background-color: #ff523b; border-radius: 5px" href="">Pay</a></td></tr>
+            <tr>
+                <td colspan="2"><a style="color: white; padding: 10px 20px; background-color: #ff523b; border-radius: 5px" href="">Pay</a></td>
+            </tr>
         </table>
     </div>
 </div>
+
+<script>
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    quantityInputs.forEach(input => {
+        input.addEventListener('input', updateSubtotal);
+    });
+
+    updateTotalPrice(); // Tính toán và hiển thị tổng giá ban đầu
+
+    function updateSubtotal(event) {
+        const quantityInput = event.target;
+        const row = quantityInput.parentNode.parentNode;
+        const priceElement = row.querySelector('.price');
+        const subtotalElement = row.querySelector('.subtotal');
+        const price = parseFloat(priceElement.textContent.replace("$", ""));
+        const quantity = parseInt(quantityInput.value);
+        const subtotal = price * quantity;
+
+        subtotalElement.textContent = "$" + subtotal.toFixed(2);
+
+        updateTotalPrice();
+    }
+
+    function updateTotalPrice() {
+        let subtotal = 0;
+
+        const subtotalElements = document.querySelectorAll('.subtotal');
+        subtotalElements.forEach(element => {
+            subtotal += parseFloat(element.textContent.replace("$", ""));
+        });
+
+        const tax = subtotal * 0.1;
+        const total = subtotal + tax;
+
+        document.getElementById('subtotal').innerHTML = "$" + subtotal.toFixed(2);
+        document.getElementById('tax').textContent = "$" + tax.toFixed(2);
+        document.getElementById('total').textContent = "$" + total.toFixed(2);
+    }
+</script>
+
+
+
 
 
 <!----------------------------------footer------------------------------------->
@@ -111,51 +130,6 @@
     }
 </script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        calculateTotal();
-    });
-
-    function updateSubtotal(input) {
-        var row = input.parentNode.parentNode;
-        var price = parseFloat(row.getAttribute("data-price"));
-        var quantity = parseInt(input.value);
-        var subtotal = price * quantity;
-
-        row.setAttribute("data-subtotal", subtotal.toFixed(2));
-        calculateTotal();
-    }
-
-    function calculateTotal() {
-        var rows = document.querySelectorAll(".cart-page table tr[data-subtotal]");
-        var subtotal = 0;
-
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            var price = parseFloat(row.getAttribute("data-price"));
-            var quantity = parseInt(row.querySelector("input[type='number']").value);
-            var itemSubtotal = price * quantity;
-            subtotal += itemSubtotal;
-
-            // Cập nhật giá trị trong ô sum
-            var sumElement = row.querySelector(".sum");
-            sumElement.textContent = "$" + itemSubtotal.toFixed(2);
-        }
-
-        var tax = subtotal * 0.1; // Tính thuế (10% của tổng giá trị)
-        var total = subtotal + tax;
-
-        var subtotalElement = document.querySelector(".total-price table tr:first-child td:last-child");
-        var taxElement = document.querySelector(".total-price table tr:nth-child(2) td:last-child");
-        var totalElement = document.querySelector(".total-price table tr:nth-child(3) td:last-child");
-
-        subtotalElement.textContent = "$" + subtotal.toFixed(2);
-        taxElement.textContent = "$" + tax.toFixed(2);
-        totalElement.textContent = "$" + total.toFixed(2);
-    }
-
-
-</script>
 
 
 </body>

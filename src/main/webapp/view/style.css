@@ -105,7 +105,7 @@ p{
     flex-basis: 25%;
     padding: 10px;
     min-width: 200px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     transition: transform 0.5s;
 }
 .col-4 img{
@@ -404,7 +404,7 @@ input:focus{
 
         /*------------------------------ cart items ------------------------------*/
 .cart-page{
-    margin: 80px auto;
+    margin: 50px auto;
 }
 
 table{
@@ -459,7 +459,7 @@ th:last-child{
 
         /*------------------------------ account-page ------------------------------*/
 .account-page{
-    padding: 50px 0;
+    padding: 30px 0;
     background: radial-gradient(#fff, #ffd6d6);
 }
 .form-container{

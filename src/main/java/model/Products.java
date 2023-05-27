@@ -1,6 +1,6 @@
 package model;
 
-public class Products {
+public class Products implements Comparable<Products>{
     private int product_id;
     private String product_name;
     private int price;
@@ -11,6 +11,12 @@ public class Products {
     private java.sql.Timestamp created_at;
     private String image;
     public Products() {
+    }
+    public Products(int product_id, String product_name,int price,int quantity_in_stock){
+        this.product_id = product_id;
+        this.product_name = product_name;
+        this.price = price;
+        this.quantity_in_stock = quantity_in_stock;
     }
 
     public Products(int product_id, String product_name, int price, String description, String supplier, String category, int quantityInStock, java.sql.Timestamp created_at, String image) {
@@ -93,5 +99,24 @@ public class Products {
     }
     public void setImage(String image) {
         this.image = image;
+    }
+    @Override
+    public String toString() {
+        return "Products{" +
+                "product_id=" + product_id +
+                ", product_name='" + product_name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", supplier='" + supplier + '\'' +
+                ", category='" + category + '\'' +
+                ", quantity_in_stock=" + quantity_in_stock +
+                ", created_at=" + created_at +
+                ", image='" + image + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Products o) {
+        return this.product_id - o.product_id;
     }
 }

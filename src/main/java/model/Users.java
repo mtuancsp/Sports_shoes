@@ -16,6 +16,15 @@ public class Users {
     private Timestamp created_at;
     private String status;
 
+    public Users(String username, String password, String phone, String email, String full_name, String role) {
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+        this.full_name = full_name;
+        this.role = role;
+    }
+
     public Users(String username, String password, String phone, String email, String full_name) {
         this.username = username;
         this.password = password;

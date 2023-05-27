@@ -11,10 +11,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
         <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
     </head>
     <body>
-        <!--<div class ="header">-->
+    <!--<div class ="header">-->
         <jsp:include page="header.jsp" />
     <!--</div>-->
     
@@ -34,12 +33,12 @@
                                 <span onclick="register()">Login</span>
                                 <hr id="Indicator">
                             </div>
-                            <form id="LoginForm"  style="top: 80px">
+                            <form id="LoginForm"  style="top: 80px" method="post" action="register" onsubmit="return validateForm()">
                                 <input type="text" name="username" placeholder="Username">
                                 <input type="password" name="password" placeholder="Password">
+                                <input type="text" name="fullName" placeholder="Full name">
                                 <input type="email" name="email" placeholder="Email">
                                 <input type="text" name="phone" placeholder="Phone">
-
                                 <button type="submit" class="btn">Register</button>
                             </form>
 
@@ -66,7 +65,7 @@
         <!-----------------------------------js for toggle menu-------------------------------------->
         <script>
             var menuItems=document.getElementById("MenuItems");
-            
+
             MenuItems.style.maxHeight="0px";
             function menutoggle(){
                 if(MenuItems.style.maxHeight == "0px"){
@@ -93,6 +92,22 @@
                 RegForm.style.transform="translateX(300px)";
                 LoginForm.style.transform="translateX(300px)";
                 Indicator.style.transform="translateX(0px)";
+            }
+            function validateForm() {
+                var password = document.forms["myForm"]["password"].value;
+                var phone = document.forms["myForm"]["phone"].value;
+
+                if (password.length < 6) {
+                    alert("Password must be at least 6 characters long.");
+                    return false;
+                }
+
+                if (!(/^\d{3}$/.test(phone))) {
+                    alert("Phone number must be 3 digits.");
+                    return false;
+                }
+
+                return true;
             }
         </script>
 

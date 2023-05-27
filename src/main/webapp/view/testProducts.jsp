@@ -40,29 +40,7 @@
             color: #777;
         }
     </style>
-    <script>
-        function showNextProducts() {
-            let products = document.getElementsByClassName("product");
-            let visibleCount = 0;
 
-            for (let i = 0; i < products.length; i++) {
-                if (products[i].style.display === "none") {
-                    products[i].style.display = "block";
-                    visibleCount++;
-                    if (visibleCount === 4) {
-                        break;
-                    }
-                }
-                if (i === products.length - 1) {
-                    let messageElement = document.getElementById("endMessage");
-                    if (messageElement) {
-                        messageElement.style.display = "block";
-                    }
-                }
-            }
-        }
-
-    </script>
 
 </head>
 <body>
@@ -107,8 +85,8 @@
 
         <c:forEach var="product" items="${productList}" varStatus="loop">
             <div class="col-4 product" style="display: ${loop.index < 4 ? 'block' : 'none'};">
-                <a href="products-details.jsp"><img src="${product.image}"></a>
-                <a href="products-details.jsp"><h4>${product.product_name}</h4></a>
+                <a href="/view/product_detail?id=${product.product_id}"><img src="${product.image}"></a>
+                <a href="/view/product_detail?id=${product.product_id}"><h4>${product.product_name}</h4></a>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -129,7 +107,6 @@
 <div class="page-btn" style="text-align: center">
         <button class="show-more-btn" onclick="showNextProducts()">Show More</button>
 </div>
-
 
 <!----------------------------------footer------------------------------------->
 <jsp:include page="footer.jsp" />
@@ -166,7 +143,28 @@
             selectElement.value = sortOption;
         }
     });
+</script>
+<script>
+    function showNextProducts() {
+        let products = document.getElementsByClassName("product");
+        let visibleCount = 0;
 
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].style.display === "none") {
+                products[i].style.display = "block";
+                visibleCount++;
+                if (visibleCount === 4) {
+                    break;
+                }
+            }
+            if (i === products.length - 1) {
+                let messageElement = document.getElementById("endMessage");
+                if (messageElement) {
+                    messageElement.style.display = "block";
+                }
+            }
+        }
+    }
 
 </script>
 

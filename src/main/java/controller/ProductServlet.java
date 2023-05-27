@@ -7,10 +7,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", value = "/view/listProduct")
@@ -32,25 +30,69 @@ public class ProductServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        String action = request.getParameter("action");
+        if(action == null){
+            action  = "";
+        }
+        try {
+            switch (action){
+                case "create":
+                    showNewFrom(request, response);
+                    break;
+                case "edit":
+                    showEditFrom(request, response);
+                     break;
+                case "delete":
+                      deleteProduct(request, response);
+                      break;
+                case "update":
+                     updateProduct(request, response);
+                      break;
+                default:
+                       listProduct(request, response);
+                       break;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null){
+            action = "";
+        }
+        try{
+            switch (action){
+                case "create":
+                    insertProduct(request, response);
+                    break;
+                case "edit":
+                    updateProduct(request, response);
+                    break;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
 
-    private void listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    public void listProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         List<Products> listProduct = productDao.selectAllProduct();
         request.setAttribute("productList", listProduct);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/testProducts.jsp");
         requestDispatcher.forward(request, response);
     }
-
+    private void showNewFrom(HttpServletRequest request, HttpServletResponse response) throws SQLException,ServletException,IOException{
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
+        requestDispatcher.forward(request, response);
+    }
     private void showEditFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int product_id = Integer.parseInt(request.getParameter("product_id"));
-        Products existingProducts = productDao.selectProducts(product_id);
+        Products existingProducts = productDao.findProductById(product_id);
         request.setAttribute("products", existingProducts);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
         requestDispatcher.forward(request, response);

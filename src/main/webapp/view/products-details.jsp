@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.Products" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -32,25 +33,19 @@
                         <img src="${product.image}" width="100%" id="productImg">
 
                         <div class="small-img-row">
+                            <c:forEach items="${productImgList}" var="image">
                             <div class="small-img-col">
-                                <img src="images/product-11.jpg" width="100%" class="small-img">
+                                <img src="${image}" alt="" width="100%" class="small-img">
                             </div>
-                             <div class="small-img-col">
-                                <img src="images/product-5.jpg" width="100%" class="small-img">
-                            </div>
-                             <div class="small-img-col">
-                                <img src="images/product-11.jpg" width="100%" class="small-img">
-                            </div>
-                             <div class="small-img-col">
-                                <img src="images/product-5.jpg" width="100%" class="small-img">
-                            </div>
+                            </c:forEach>
                         </div>
+
                     </div>
                 
                     <div class="col-2">
-                        <p>${product.category}</p>
                         <h1>${product.getProduct_name()}</h1>
-                        <h4>${product.price}</h4>
+                        <p>${product.category}</p>
+                        <h4>$${product.price}</h4>
                         <select>
                             <option>Select Size</option>
                             <option>6<!--Small (s)--></option>
@@ -59,7 +54,8 @@
                             <option>9<!--XL--></option>
                             <option>10<!--XXL--></option>
                         </select>
-                        <input type="number" values="1">
+                        <p>Stock: ${product.getQuantity_in_stock()}</p>
+                        <input type="number" value="1" min="1">
                         <a href="cart.jsp" class="btn">Add to Cart</a>
                         <h3>Product Description <i class="fa fa-indent" ></i></h3>
                         <br>
@@ -80,55 +76,20 @@
         <!----------------------------------products------------------------------------->
         <div class="small-container">
              <div class="row">
+                 <c:forEach items="${relatedProductList}" var="product">
                      <div class="col-4">
-                        <a href="products-details.jsp"><img src="images/product-11.jpg"></a>
-                        <a href="products-details.jsp"><h4>Downshifter Sports Shoes</h4></a>
+                        <a href="/view/product_detail?id=${product.product_id}"><img src="${product.image}" alt="img"></a>
+                        <a href="/view/product_detail?id=${product.product_id}"><h4>${product.getProduct_name()}</h4></a>
                         <div class="rating">
-                            
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star" ></i>
                             <i class="fa fa-star-half-o" ></i>
                             <i class="fa fa-star-o" ></i>
                         </div>
-                        <p>$50.00</p>
+                        <p>$${product.price}</p>
                     </div>
-                    <div class="col-4">
-                        <a href="products-details.jsp"><img src="images/product-2.jpg"></a>
-                        <h4>Lace-Up Running Shoes</h4>
-                        <div class="rating">
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star-half-o" ></i>
-                        </div>
-                        <p>$35.00</p>
-                    </div>
-                    <div class="col-4">
-                        <a href="products-details.jsp"><img src="images/product-3.jpg"></a>
-                        <h4>Lace Fastening Shoes</h4>
-                        <div class="rating">
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star-o" ></i>
-                        </div>
-                        <p>$15.00</p>
-                    </div>
-                    <div class="col-4">
-                        <a href="products-details.jsp"><img src="images/product-10.jpg"></a>
-                        <h4>Flat Lace-Fastening Shoes</h4>
-                        <div class="rating">
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star" ></i>
-                            <i class="fa fa-star-o" ></i>
-                            <i class="fa fa-star-o" ></i>
-                        </div>
-                        <p>$48.00</p>
-                    </div>  
+                 </c:forEach>
                 </div>
         </div>
 

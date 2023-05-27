@@ -11,7 +11,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ProductDao {
-
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
     private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier, category, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM case_study.products WHERE product_id = ?";
@@ -20,16 +19,84 @@ public class ProductDao {
     private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
     private static final String SHOW_PRODUCT_DETAILS = "SELECT * FROM case_study.products WHERE product_id = ?";
     private static final String SEARCH_THE_FILTER = "SELECT * FROM case_study.products WHERE product_name LIKE ? AND price >= ? AND price <= ?";
+    private static final String GET_PRODUCT_IMG_BY_ID = "SELECT * FROM case_study.product_images WHERE product_id = ?";
+    private static final String GET_PRODUCT_BY_CATEGORY = "SELECT * FROM case_study.products WHERE category = ?";
+    private static final String GET_FEATURED_PRODUCT = "SELECT * FROM case_study.products ORDER BY quantity_in_stock DESC LIMIT 4; ";
 
     public static void main(String[] args) {
         ProductDao productDAO = new ProductDao();
-        List<Products> listProduct = productDAO.selectAllProduct();
-        listProduct.sort(Comparator.comparing(Products::getCreated_at));
-        List<Products> last8ProductList = new ArrayList<>(listProduct.subList(0, Math.min(8, listProduct.size())));
-        for (Products products : last8ProductList) {
-            System.out.println(products);
-        }
+        List<Products> list = productDAO.getFeaturedProduct();
+        System.out.println(list);
     }
+
+    public List<Products> getFeaturedProduct() {
+        List<Products> products = new ArrayList<>();
+        try (Connection connection = DatabaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_FEATURED_PRODUCT))
+        {
+            System.out.println(statement);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int product_id = resultSet.getInt("product_id");
+                String product_name = resultSet.getString("product_name");
+                int price = resultSet.getInt("price");
+                String description = resultSet.getString("description");
+                String supplier = resultSet.getString("supplier");
+                String category = resultSet.getString("category");
+                int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+                Timestamp created_at = resultSet.getTimestamp("created_at");
+                String image = resultSet.getString("image");
+                products.add(new Products(product_id, product_name, price, description, supplier, category, quantity_in_stock, created_at, image));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return products;
+    }
+    public List<Products> getProductByCategory(String cate) {
+        List<Products> products = new ArrayList<>();
+        try (Connection connection = DatabaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_PRODUCT_BY_CATEGORY))
+        {
+            statement.setString(1, cate);
+            System.out.println(statement);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int product_id = resultSet.getInt("product_id");
+                String product_name = resultSet.getString("product_name");
+                int price = resultSet.getInt("price");
+                String description = resultSet.getString("description");
+                String supplier = resultSet.getString("supplier");
+                String category = resultSet.getString("category");
+                int quantity_in_stock = resultSet.getInt("quantity_in_stock");
+                Timestamp created_at = resultSet.getTimestamp("created_at");
+                String image = resultSet.getString("image");
+                products.add(new Products(product_id, product_name, price, description, supplier, category, quantity_in_stock, created_at, image));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return products;
+
+    }
+
+    public List<String> getProductImgByID(int id) {
+        List<String> productImgList = new ArrayList<>();
+        try (Connection connection = DatabaseConnector.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_PRODUCT_IMG_BY_ID))
+        {
+            statement.setInt(1, id);
+            System.out.println(statement);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                productImgList.add(resultSet.getString("image_path"));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return productImgList;
+    }
+
     // Danh sách tất cả sản phẩm
     public List<Products> selectAllProduct() {
         List<Products> products = new ArrayList<Products>();

@@ -42,7 +42,7 @@ public class UserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String full_name = request.getParameter("full_name");
-        Users newUser = new Users(username,password,phone,email,full_name);
+        Users newUser = new Users(username,password,phone,email,full_name,"customer");
         userDAO.insertUser(newUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/create.jsp");
         dispatcher.forward(request, response);
@@ -60,7 +60,7 @@ public class UserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String full_name = request.getParameter("full_name");
-        Users user = new Users(username,password,phone,email,full_name);
+        Users user = new Users(username,password,phone,email,full_name,"customer");
         userDAO.updateUser(user);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("webapp/editUser.jsp");
         requestDispatcher.forward(request,response);

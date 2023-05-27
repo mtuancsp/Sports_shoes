@@ -56,55 +56,20 @@
 <div class="small-container">
     <h2 class="title">Featured Products</h2>
     <div class="row">
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-11.jpg"></a>
-            <a href="products-details.jsp"><h4>Downshifter Sports Shoes</h4></a>
-            <div class="rating">
-                <!--(before this added awesome4 cdn font link to the head)added a cdn link by searching font awesome4 icon and from the site  search the star entering the first option and getting a link of this fa-star*-->
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <i class="fa fa-star-o"></i>
+        <c:forEach var="product" items="${featuredProductList}">
+            <div class="col-4 product">
+                <a href="/view/product_detail?id=${product.product_id}"><img src="${product.image}"></a>
+                <a href="/view/product_detail?id=${product.product_id}"><h4>${product.product_name}</h4></a>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>$${product.price}</p>
             </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-2.jpg"></a>
-            <h4>Lace-Up Running Shoes</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$35.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-3.jpg"></a>
-            <h4>Lace Fastening Shoes</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$15.00</p>
-        </div>
-        <div class="col-4">
-            <a href="products-details.jsp"><img src="images/product-10.jpg"></a>
-            <h4>Flat Lace-Fastening Shoes</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$48.00</p>
-        </div>
+        </c:forEach>
     </div>
 
 
@@ -227,50 +192,7 @@
 
 
 <!----------------------------------footer------------------------------------->
-<div class="footer">
-    <div class="container">
-
-        <div class="row">
-            <div class="footer-col-1">
-                <h3>Download Our App</h3>
-                <p>Download App for Android and ios mobile phone.</p>
-                <div class="app-logo">
-                    <img src="images/play-store.png" alt="">
-                    <img src="images/app-store.png" alt="">
-                </div>
-            </div>
-            <div class="footer-col-2">
-                <img src="images/logo-white.png">
-                <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
-            </div>
-            <div class="footer-col-3">
-                <h3>Useful Links</h3>
-                <ul>
-                    <li>Coupons</li>
-                    <li>Blog Post</li>
-                    <li>Return Policy</li>
-                    <li>Join Affiliate</li>
-                </ul>
-            </div>
-            <div class="footer-col-4">
-                <h3>Follow us</h3>
-                <ul>
-                    <li>Facebook</li>
-                    <li>Twitter</li>
-                    <li>Instagram</li>
-                    <li>Youtube</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <hr><!--horizontal line-->
-        <p class="copyright">Copyright 2023 - C0223G1</p>
-
-    </div>
-</div>
-
-
+<jsp:include page="footer.jsp" />
 <!-----------------------------------js for toggle menu----------------------------------------------->
 <script>
     var menuItems = document.getElementById("MenuItems");

@@ -26,9 +26,14 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Products> productList = productDAO.selectAllProduct();
+        List<Products> featuredProductList = productDAO.getFeaturedProduct();
+
         request.setAttribute("productList", productList);
+        request.setAttribute("featuredProductList", featuredProductList);
         request.getRequestDispatcher("/view/index.jsp").forward(request, response);
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

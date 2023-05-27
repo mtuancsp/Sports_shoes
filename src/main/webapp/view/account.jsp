@@ -34,12 +34,12 @@
                                 <span onclick="register()">Login</span>
                                 <hr id="Indicator">
                             </div>
-                            <form id="LoginForm"  style="top: 80px">
+                            <form id="LoginForm"  style="top: 80px" method="post" action="register" onsubmit="return validateForm()">
                                 <input type="text" name="username" placeholder="Username">
                                 <input type="password" name="password" placeholder="Password">
+                                <input type="text" name="fullName" placeholder="Full name">
                                 <input type="email" name="email" placeholder="Email">
                                 <input type="text" name="phone" placeholder="Phone">
-
                                 <button type="submit" class="btn">Register</button>
                             </form>
 
@@ -93,6 +93,22 @@
                 RegForm.style.transform="translateX(300px)";
                 LoginForm.style.transform="translateX(300px)";
                 Indicator.style.transform="translateX(0px)";
+            }
+            function validateForm() {
+                var password = document.forms["myForm"]["password"].value;
+                var phone = document.forms["myForm"]["phone"].value;
+
+                if (password.length < 6) {
+                    alert("Password must be at least 6 characters long.");
+                    return false;
+                }
+
+                if (!(/^\d{3}$/.test(phone))) {
+                    alert("Phone number must be 3 digits.");
+                    return false;
+                }
+
+                return true;
             }
         </script>
 

@@ -85,8 +85,8 @@
 
         <c:forEach var="product" items="${productList}" varStatus="loop">
             <div class="col-4 product" style="display: ${loop.index < 4 ? 'block' : 'none'};">
-                <a href="products-details.jsp"><img src="${product.image}"></a>
-                <a href="products-details.jsp"><h4>${product.product_name}</h4></a>
+                <a href="/view/product_detail?id=${product.product_id}"><img src="${product.image}"></a>
+                <a href="/view/product_detail?id=${product.product_id}"><h4>${product.product_name}</h4></a>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>

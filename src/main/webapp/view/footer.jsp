@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="footer-col-2">
-        <img src="images/logo-white.png">
+        <img src="images/c02team2.png">
         <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
       </div>
       <div class="footer-col-3">

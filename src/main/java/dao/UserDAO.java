@@ -14,9 +14,17 @@ public class UserDAO {
     private static final String SORT_BY_NAME = "select user_id,full_name,email,phone,birthday from users order by username;";
     private static final String SORT_BY_CREATE_AT = "select user_id,full_name,email,phone,birthday from users order by created_at;";
     private static final String INSERT_USERS_SQL = "insert into users(username,password,phone,email,full_name) values  (?,?,?,?,?);";
-    private static final String SELECT_USER_BY_ID ="select username,password,phone,email,full_name from users where user_name = ?";
+    private static final String SELECT_USER_BY_NAME ="select username,password,phone,email,full_name from users where user_name = ?";
     private static final String UPDATE_USERS_SQL = "update users set username = ?,password =?,phone = ?,email = ?,full_name =? where user_name = ?;";
-    public void insertUser(Users user) throws SQLException {
+
+    public static void main(String[] args) throws SQLException {
+        UserDAO userDAO = new UserDAO();
+        Users user1 = new Users("abc", "admin", "admin", "admin", "admin");
+        System.out.println(userDAO.insertUser(user1));
+    }
+    public String insertUser(Users user) throws SQLException {
+        String result;
+
         System.out.println(INSERT_USERS_SQL);
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
@@ -26,9 +34,18 @@ public class UserDAO {
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getFull_name());
             System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                result = "Register Success";
+            } else {
+                result = "Register Failed";
+            }
         }
+
+        return result;
     }
+
     public List<Users> selectAllUsers(){
         List<Users> users = new ArrayList<>();
         try(Connection connection = DatabaseConnector.getConnection();
@@ -114,7 +131,7 @@ public class UserDAO {
     public Users selectUser(String name) {
         Users user = null;
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_NAME);) {
             preparedStatement.setString(1, name);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
@@ -124,7 +141,8 @@ public class UserDAO {
                 String phone = rs.getString("phone");
                 String email = rs.getString("email");
                 String full_name = rs.getString("full_name");
-                user = new Users(username,password,phone,email,full_name);
+                String role = rs.getString("role");
+                user = new Users(username,password,phone,email,full_name,role);
             }
         } catch (SQLException e) {
             e.printStackTrace();

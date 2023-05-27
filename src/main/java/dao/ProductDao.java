@@ -143,7 +143,7 @@ public class ProductDao {
         }
     }
 
-    public boolean updateUser(Products products) throws SQLException {
+    public boolean updateProduct(Products products) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_SQL)) {

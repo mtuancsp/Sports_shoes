@@ -30,11 +30,52 @@ public class ProductServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        String action = request.getParameter("action");
+        if(action == null){
+            action  = "";
+        }
+        try {
+            switch (action){
+                case "create":
+                    showNewFrom(request, response);
+                    break;
+                case "edit":
+                    showEditFrom(request, response);
+                     break;
+                case "delete":
+                      deleteProduct(request, response);
+                      break;
+                case "update":
+                     updateProduct(request, response);
+                      break;
+                default:
+                       listProduct(request, response);
+                       break;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null){
+            action = "";
+        }
+        try{
+            switch (action){
+                case "create":
+                    insertProduct(request, response);
+                    break;
+                case "edit":
+                    updateProduct(request, response);
+                    break;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -45,7 +86,10 @@ public class ProductServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/view/testProducts.jsp");
         requestDispatcher.forward(request, response);
     }
-
+    private void showNewFrom(HttpServletRequest request, HttpServletResponse response) throws SQLException,ServletException,IOException{
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
+        requestDispatcher.forward(request, response);
+    }
     private void showEditFrom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int product_id = Integer.parseInt(request.getParameter("product_id"));
         Products existingProducts = productDao.findProductById(product_id);
@@ -66,7 +110,7 @@ public class ProductServlet extends HttpServlet {
         Timestamp created_at = Timestamp.valueOf(request.getParameter("created_at"));
         String image = request.getParameter("image");
         Products products = new Products(product_id, product_name, price, description, supplier, category, quantity_in_stock, created_at, image);
-        productDao.updateUser(products);
+        productDao.updateProduct(products);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
         requestDispatcher.forward(request, response);
 

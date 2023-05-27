@@ -13,27 +13,27 @@
 </head>
 <body>
 <h1>List Product</h1>
-<table>
-    <thead>
-    <tr>
-        <th>product_id</th>
-        <th>product_name</th>
-        <th>price</th>
-        <th>quantity_in_stock</th>
-        <th>add cart</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% for(Products products: productsList) {%>
-    <tr>
-        <td><%=products.getProduct_id()%></td>
-        <td><%=products.getProduct_name()%></td>
-        <td><%=products.getPrice()%></td>
-        <td><%=products.getQuantity_in_stock()%></td>
-        <td><a href="CartServlet/action = add & product_id = <%= products.getProduct_id()%>">add cart</a></td>
-    </tr>
-    <% } %>
-    </tbody>
-</table>
+<%--<table>--%>
+<%--    <thead>--%>
+<%--    <tr>--%>
+<%--        <th>product_id</th>--%>
+<%--        <th>product_name</th>--%>
+<%--        <th>price</th>--%>
+<%--        <th>quantity_in_stock</th>--%>
+<%--        <th>add cart</th>--%>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody>--%>
+<%--    <% for(Products products: productsList) {%>--%>
+<%--    <tr>--%>
+<%--        <td><%=products.getProduct_id()%></td>--%>
+<%--        <td><%=products.getProduct_name()%></td>--%>
+<%--        <td><%=products.getPrice()%></td>--%>
+<%--        <td><%=products.getQuantity_in_stock()%></td>--%>
+<%--        <td><a href="CartServlet/action = add & product_id = <%= products.getProduct_id()%>">add cart</a></td>--%>
+<%--    </tr>--%>
+<%--    <% } %>--%>
+<%--    </tbody>--%>
+<%--</table>--%>
 </body>
 </html>

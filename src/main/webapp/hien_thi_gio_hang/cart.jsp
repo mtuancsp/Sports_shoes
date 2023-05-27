@@ -30,16 +30,16 @@
       <td><fmt:formatNumber value="${cartItem.product.price}" type="currency"/></td>
       <td>
         <form action="${pageContext.request.contextPath}/cart" method="post">
-          <input type="hidden" name="action" value="Cập nhật số lượng sản phẩm">
+          <input type="hidden" name="action" value="update_cart">
           <input type="hidden" name="cartItemId" value="${cartItem.id}">
           <input type="number" name="quantity" value="${cartItem.quantity}" min="1">
-          &nbsp;<input type="submit" value="Cập nhật">
+          &nbsp;<input type="submit" value="update">
         </form>
       </td>
       <td>${cartItem.product.price * cartItem.quantity}</td>
       <td>
         <form action="${pageContext.request.contextPath}/cart" method="post">
-          <input type="hidden" name="action" value="Xóa sản phẩm khỏi giỏ hàng">
+          <input type="hidden" name="action" value="delete_cart">
           <input type="hidden" name="cartItemId" value="${cartItem.id}">
           <input type="submit" value="Xóa">
         </form>

@@ -68,7 +68,7 @@
                 <div style="height: 60px; width: 300px;">
                     <input type="text" class="message-box" placeholder="Message" />
                 </div>
-                <button style="height: 40px; width: 100px; color: white;border:none; background-color: #ff523b; border-radius: 10px;">SEND</button>
+                <button class="btn" style="height: 40px; width: 100px;">SEND</button>
             </form>
         </div>
         <div class="map_container">

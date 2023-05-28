@@ -70,7 +70,7 @@
 <!--</div>-->
 
 <div class="small-container">
-    <h2 class="title" style="margin-bottom: 40px">Manage Product</h2>
+    <h2 class="title" style="margin-bottom: 40px"><a href="/view/crudProduct.jsp">Manage Product</a></h2>
     <div class="row">
         <c:forEach var="product" items="${productList}">
             <div class="col-4 product" style="margin-bottom: 0">

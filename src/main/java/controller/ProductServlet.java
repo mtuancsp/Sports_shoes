@@ -113,20 +113,17 @@ public class ProductServlet extends HttpServlet {
         productDao.updateProduct(products);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
         requestDispatcher.forward(request, response);
-
     }
 
     private void insertProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
-        int product_id = Integer.parseInt(request.getParameter("product_id"));
         String product_name = request.getParameter("product_name");
         int price = Integer.parseInt(request.getParameter("price"));
         String description = request.getParameter("description");
         String supplier = request.getParameter("supplier");
         String category = request.getParameter("category");
         int quantity_in_stock = Integer.parseInt(request.getParameter("quantity_in_stock"));
-        Timestamp created_at = Timestamp.valueOf(request.getParameter("created_at"));
         String image = request.getParameter("image");
-        Products products = new Products(product_id, product_name, price, description, supplier, category, quantity_in_stock, created_at, image);
+        Products products = new Products(product_name, price, description, supplier, category, quantity_in_stock, image);
         productDao.insertUser(products);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("");
         requestDispatcher.forward(request, response);

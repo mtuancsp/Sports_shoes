@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProductDao {
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
-    private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier, category, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products (product_name, price, description,supplier, category, quantity_in_stock, image) VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM case_study.products WHERE product_id = ?";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name LIKE CONCAT('%', ?, '%');";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_name = ?";

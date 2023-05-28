@@ -12,11 +12,14 @@ public class Products implements Comparable<Products>{
     private String image;
     public Products() {
     }
-    public Products(int product_id, String product_name,int price,int quantity_in_stock){
-        this.product_id = product_id;
+    public Products(String product_name,int price,String description,String supplier,String category, int quantity_in_stock, String image) {
         this.product_name = product_name;
         this.price = price;
+        this.description = description;
+        this.supplier = supplier;
+        this.category = category;
         this.quantity_in_stock = quantity_in_stock;
+        this.image = image;
     }
 
     public Products(int product_id, String product_name, int price, String description, String supplier, String category, int quantityInStock, java.sql.Timestamp created_at, String image) {

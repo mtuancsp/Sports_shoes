@@ -14,25 +14,25 @@ public class ProductServiceDao {
         this.conn = conn;
     }
 
-    public  List<Products> getAllProducts() throws SQLException {
-        List<Products> listProducts = new ArrayList<>();
-        String sql = "SELECT * FROM case_study.products";
-        try (Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                int productId = rs.getInt("product_id");
-                String productName = rs.getString("product_name");
-                int price = rs.getInt("price");
-                int quantity = rs.getInt("quantity_in_stock");
-                Products products = new Products(productId, productName, price, quantity);
-                listProducts.add(products);
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return listProducts;
-    }
+//    public  List<Products> getAllProducts() throws SQLException {
+//        List<Products> listProducts = new ArrayList<>();
+//        String sql = "SELECT * FROM case_study.products";
+//        try (Statement stmt = conn.createStatement();
+//             ResultSet rs = stmt.executeQuery(sql)) {
+//            while (rs.next()) {
+//                int productId = rs.getInt("product_id");
+//                String productName = rs.getString("product_name");
+//                int price = rs.getInt("price");
+//                int quantity = rs.getInt("quantity_in_stock");
+//                Products products = new Products(productId, productName, price, quantity);
+//                listProducts.add(products);
+//            }
+//        }
+//        catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return listProducts;
+//    }
 //    public static Products getProductById(int productId){
 //        Connection conn = null;
 //        PreparedStatement stmt = null;

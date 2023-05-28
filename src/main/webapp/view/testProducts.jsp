@@ -17,6 +17,7 @@
           rel="stylesheet">
     <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <style>
         .show-more-btn {
@@ -50,8 +51,16 @@
 
 
 <div class="small-container">
-    <div class="row row-2" style="margin-top: 50px">
-        <h2>All Products</h2>
+    <div class="row row-2" style="margin-top: 40px; margin-bottom: 40px">
+        <h2 style="width: 180px">All Products</h2>
+        <form action="" class="form-inline my-2 my-lg-0">
+            <div>
+                <input name="search" oninput="searchByName(this)" style="margin-bottom: 0" type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-secondary" onsubmit="searchByName(document.getElementsByName('search')[0])"><b>Search</b> <i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </form>
         <select onchange="sortProducts(this.value)">
             <option value="default">Default sorting</option>
             <option value="name">Sort by name</option>
@@ -60,7 +69,7 @@
         </select>
     </div>
 
-    <div class="row">
+    <div id="listProducts" class="row">
         <%
             List<Products> productList = (List<Products>) request.getAttribute("productList");
             String sortOption = request.getParameter("sort");
@@ -97,6 +106,8 @@
                 <p>$${product.price}</p>
             </div>
         </c:forEach>
+
+
     </div>
 </div>
 
@@ -168,5 +179,22 @@
 
 </script>
 
+<script>
+
+    function searchByName(element) {
+        var search = element.value;
+        $.ajax({
+            type: "GET",
+            url: "/view/search",
+            data: {
+                search: search
+            },
+            success: function(data) {
+                var div = document.getElementById("listProducts");
+                div.innerHTML = data;
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -29,7 +29,7 @@
     <div class="container">
         <div class="navbar" style="padding: 5px;">
             <div class="logo">
-                <a href="view/home" style="position: relative; top: 5px"><img src="images/c02team2.png" width="120px"></a>
+                <a href="home" style="position: relative; top: 5px"><img src="images/c02team2.png" width="120px"></a>
             </div>
             <nav style="">
                 <ul id="MenuItems">
@@ -41,7 +41,7 @@
                             <a href="#">Manage</a>
                             <ul class="dropdown-menu">
                                 <li><a href="/view/manageProducts">Products</a></li>
-                                <li><a href="#">Accounts</a></li>
+                                <li><a href="/view/manageUsers">Accounts</a></li>
                             </ul>
                         </li>
                     </c:if>

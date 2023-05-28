@@ -14,7 +14,7 @@ public class ProductDao {
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM case_study.products";
     private static final String INSERT_PRODUCT_SQL = "INSERT INTO case_study.products ( product_id, product_name, price, description,supplier, category, quantity_in_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM case_study.products WHERE product_id = ?";
-    private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name = ?;";
+    private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM case_study.products WHERE product_name LIKE CONCAT('%', ?, '%');";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM case_study.products WHERE product_name = ?";
     private static final String UPDATE_PRODUCT_SQL = "UPDATE case_study.products SET product_id = ?, product_name = ?, price = ?, description = ?, category = ?, quantity_in_stock = ?, created_at = ?" + "where product_id = ?;";
     private static final String SHOW_PRODUCT_DETAILS = "SELECT * FROM case_study.products WHERE product_id = ?";
@@ -212,15 +212,15 @@ public class ProductDao {
     }
 
     // tìm kiếm sản phẩm theo tên
-    public Products findProducts(String name) {
+    public List<Products> findProducts(String name) {
 
-        Products products = null;
+        List<Products> products = new ArrayList<>();
 
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_PRODUCT_BY_NAME)) {
-            statement.setString(1, "%" + name + "%");
+            statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 int product_id = resultSet.getInt("product_id");
                 String product_name = resultSet.getString("product_name");
                 int price = resultSet.getInt("price");
@@ -230,7 +230,7 @@ public class ProductDao {
                 int quantity_in_stock = resultSet.getInt("quantity_in_stock");
                 Timestamp created_at = resultSet.getTimestamp("created_at");
                 String image = resultSet.getString("image");
-                products = new Products(product_id, product_name, price, description, supplier, category, quantity_in_stock, created_at, image);
+                products.add(new Products(product_id, product_name, price, description, supplier, category, quantity_in_stock, created_at, image));
             }
         } catch (SQLException e) {
             e.printStackTrace();

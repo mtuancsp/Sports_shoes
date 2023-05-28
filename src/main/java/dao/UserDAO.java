@@ -16,6 +16,7 @@ public class UserDAO {
     private static final String INSERT_USERS_SQL = "insert into users(username,password,phone,email,full_name) values  (?,?,?,?,?);";
     private static final String UPDATE_INFO_USER = "update users set full_name = ?,birthday=?,email=?,phone=?,password=? where user_id = ?;";
     private static final String SELECT_USER_BY_ID = "select full_name,birthday,email,phone,password from users where id =?";
+    private static final String UPDATE_AVATAR_USER = "update users set avatar_path = ? where user_id = ?;";
     public void insertUser(Users user) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
         try (Connection connection = DatabaseConnector.getConnection();
@@ -28,6 +29,44 @@ public class UserDAO {
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         }
+    }
+
+    public void updateAvatar(String avatar_path, int user_id){
+        System.out.println(UPDATE_AVATAR_USER);
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_AVATAR_USER)) {
+            preparedStatement.setString(1, avatar_path);
+            preparedStatement.setInt(2, user_id);
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String registerUser(Users user) throws SQLException {
+        String result;
+
+        System.out.println(INSERT_USERS_SQL);
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getPhone());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getFull_name());
+            System.out.println(preparedStatement);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                result = "Register Success";
+            } else {
+                result = "Register Failed";
+            }
+        }
+
+        return result;
     }
     public List<Users> selectAllUsers(){
         List<Users> users = new ArrayList<>();

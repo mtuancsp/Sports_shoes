@@ -54,17 +54,29 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("existingUser", existingUser);
         requestDispatcher.forward(request,response);
     }
-    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException,SQLException,IOException{
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String full_name = request.getParameter("full_name");
-        Users user = new Users(username,password,phone,email,full_name,"customer");
-        userDAO.updateUser(user);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("webapp/editUser.jsp");
-        requestDispatcher.forward(request,response);
-    }
+//    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException,SQLException,IOException{
+//        String username = request.getParameter("username");
+//        String password = request.getParameter("password");
+//        String phone = request.getParameter("phone");
+//        String email = request.getParameter("email");
+//        String full_name = request.getParameter("full_name");
+//        Users user = new Users(username,password,phone,email,full_name,"customer");
+//        userDAO.updateInfoUser();
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("webapp/editUser.jsp");
+//        requestDispatcher.forward(request,response);
+//    }
+private void updateUser(HttpServletRequest request, HttpServletResponse response)
+        throws SQLException, IOException, ServletException {
+    String full_name = request.getParameter("full_name");
+    String birthday = request.getParameter("birthday");
+    String email = request.getParameter("email");
+    String phone = request.getParameter("phone");
+    String password = request.getParameter("password");
+    int user_id = Integer.parseInt(request.getParameter("user_id"));
+    userDAO.updateInfoUser(full_name,birthday,email,phone,password,user_id);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("view/info.jsp");
+    dispatcher.forward(request, response);
+}
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException,SQLException,IOException{
         int id = Integer.parseInt(request.getParameter("id"));

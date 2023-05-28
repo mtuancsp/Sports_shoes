@@ -29,7 +29,7 @@
     <div class="container">
         <div class="navbar" style="padding: 5px;">
             <div class="logo">
-                <a href="view/home" style="position: relative; top: 5px"><img src="images/c02team2.png" width="120px"></a>
+                <a href="home" style="position: relative; top: 5px"><img src="images/c02team2.png" width="120px"></a>
             </div>
             <nav style="">
                 <ul id="MenuItems">
@@ -41,7 +41,7 @@
                             <a href="#">Manage</a>
                             <ul class="dropdown-menu">
                                 <li><a href="/view/manageProducts">Products</a></li>
-                                <li><a href="#">Accounts</a></li>
+                                <li><a href="/view/manageUsers">Accounts</a></li>
                             </ul>
                         </li>
                     </c:if>
@@ -52,7 +52,7 @@
                         <li><a href="logout" style="color: red;">Logout&nbsp;<img style="position: relative; top: 3px;"
                                                                                     src="images/logout.png" alt="exit"
                                                                                     width="20px" height="20px"></a></li>
-                        <li><a style="color: red; font-weight: bold;" href="">${sessionScope.user.getUsername()}<img style="padding: 0;position: relative; top: 4px; border-radius: 50%;"
+                        <li><a style="color: red; font-weight: bold;" href="info.jsp">${sessionScope.user.getUsername()}<img style="padding: 0;position: relative; top: 4px; border-radius: 50%;"
                                                                                                          src="${sessionScope.user.getAvatar_path()}" alt="ava"
                                                                                                          width="20px" height="20px"></a></li>
 

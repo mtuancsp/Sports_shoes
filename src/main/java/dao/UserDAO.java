@@ -2,8 +2,6 @@ package dao;
 
 import model.Users;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,20 +16,36 @@ public class UserDAO {
     private static final String INSERT_USERS_SQL = "insert into users(username,password,phone,email,full_name) values  (?,?,?,?,?);";
     private static final String UPDATE_INFO_USER = "update users set full_name = ?,birthday=?,email=?,phone=?,password=? where user_id = ?;";
     private static final String SELECT_USER_BY_ID = "select full_name,birthday,email,phone,password from users where id =?";
-//    public void insertUser(Users user) throws SQLException {
-//        System.out.println(INSERT_USERS_SQL);
-//        try (Connection connection = DatabaseConnector.getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
-//            preparedStatement.setString(1, user.getUsername());
-//            preparedStatement.setString(2, user.getPassword());
-//            preparedStatement.setString(3, user.getPhone());
-//            preparedStatement.setString(4, user.getEmail());
-//            preparedStatement.setString(5, user.getFull_name());
-//            System.out.println(preparedStatement);
-//            preparedStatement.executeUpdate();
-//        }
-//    }
-    public String insertUser(Users user) throws SQLException {
+    private static final String UPDATE_AVATAR_USER = "update users set avatar_path = ? where user_id = ?;";
+    public void insertUser(Users user) throws SQLException {
+        System.out.println(INSERT_USERS_SQL);
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getPhone());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getFull_name());
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public void updateAvatar(String avatar_path, int user_id){
+        System.out.println(UPDATE_AVATAR_USER);
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_AVATAR_USER)) {
+            preparedStatement.setString(1, avatar_path);
+            preparedStatement.setInt(2, user_id);
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String registerUser(Users user) throws SQLException {
         String result;
 
         System.out.println(INSERT_USERS_SQL);
@@ -54,7 +68,6 @@ public class UserDAO {
 
         return result;
     }
-
     public List<Users> selectAllUsers(){
         List<Users> users = new ArrayList<>();
         try(Connection connection = DatabaseConnector.getConnection();
@@ -173,19 +186,6 @@ public class UserDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void updateUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        String full_name = request.getParameter("full_name");
-        String birthday = request.getParameter("birthday");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String password = request.getParameter("password");
-        int user_id = Integer.parseInt(request.getParameter("user_id"));
-        userDAO.updateInfoUser(full_name,birthday,email,phone,password,user_id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view/info.jsp");
-        dispatcher.forward(request, response);
     }
     public Users selectUser(int id) {
         Users user = null;

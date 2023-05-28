@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="model.Products" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -13,26 +18,30 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body {
-      height: 100%;
     }
 
     .col-md-6 {
-      height: 450px;
-      width: 450px;
+        text-align: center;
     }
-    .footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 0;
-    }
+
     #contact div {
       height: 60px;
       width: 300px;
     }
     #contact input {
       background-color: #ffaf96;
+    }
+    #test{
+        text-align: center;
+        border:3px solid #ff523b;
+        width:400px;
+        height:400px;
+        overflow-x:hidden;
+        overflow-y:auto;
+        border-radius: 10px;
+    }
+    button {
+        height: 40px; width: 100px; color: white; background-color: #ff523b; border-radius: 10px; border: none; font-size: 18px; cursor: pointer;
     }
   </style>
 </head>
@@ -41,32 +50,84 @@
 <jsp:include page="header.jsp" />
 <!--</div>-->
 
-
 <!------------------------------ cart items details------------------------------>
-<section class="contact_section layout_padding" style="margin-top: 50px">
+<section class="contact_section layout_padding" style="margin-top: 50px; margin-bottom: 50px">
+  <div></div>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <form id="contact" action="" style="font-size: 20px; padding: 20px; border: 2px solid #ff523b; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
-          <h2 style="color: #ff523b;height: 60px;font-size: 36px">INFORMATION</h2>
-          <div style="height: 60px; width: 300px;">
-            <input type="text" placeholder="Full name" />
-          </div>
-          <div style="height: 60px; width: 300px;">
-            <input type="text" placeholder="Birthday" />
-          </div>
-          <div style="height: 60px; width: 300px;">
-            <input type="email" placeholder="Email" />
-          </div>
-          <div style="height: 60px; width: 300px;">
-            <input type="text" placeholder="Phone" />
-          </div>
-          <div style="height: 60px; width: 300px;">
-            <input type="text" class="message-box" placeholder="Password" />
-          </div>
-          <button style="height: 40px; width: 100px; color: white; background-color: #ff523b; border-radius: 10px;">update</button>
+
+        <form style="text-align: center" action="changeAvatar" method="post" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to change the avatar?');">
+            <div>
+                <img id="avatar" src="${user.avatar_path}" alt="Cannot find avatar" style="height: 240px;width: 240px" /><br>
+                <input type="file" name="avatar" id="avatarInput" style="display: none;">
+                <button type="button" onclick="chooseFile()">Change</button>
+                <button type="submit">Submit</button>
+                <br>
+                <p style="color: red" class="message">${message}</p>
+            </div>
         </form>
+
+        <div class="col-md-6">
+          <form method="post">
+          <h2 style="color: #ff523b;height: 60px;font-size: 36px">INFORMATION</h2>
+              <c:if test="${user != null}">
+                  <input type="hidden" name="id" value="<c:out value='${user.user_id}' />"/>
+              </c:if>
+          <div style="height: 60px; width: 300px;">
+            <input type="text" value="<c:out value='${user.full_name}'/>" />
+          </div>
+          <div style="height: 60px; width: 300px;">
+            <input type="text" value="<c:out value='${user.birthday}'/>" />
+          </div>
+          <div style="height: 60px; width: 300px;">
+            <input type="email"value="<c:out value='${user.email}'/>" />
+          </div>
+          <div style="height: 60px; width: 300px;">
+            <input type="text" value="<c:out value='${user.phone}'/>" />
+          </div>
+          <div style="height: 60px; width: 300px;">
+            <input type="text" value="<c:out value='${user.password}'/>" />
+          </div>
+          <button style="">Update</button>
+          </form>
       </div>
+
+        <div id="test">
+            <h2><a href="" style="color: #ff523b">Order History</a></h2>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+            <a href="#">a</a><br>
+
+
+<%--           <c:forEach items="${products}" var = "item">--%>
+<%--               <p>${item.getProduct_id}</p>--%>
+<%--               <p>${item.getProduct_name}</p>--%>
+<%--               <p>${item.getPrice}</p>--%>
+<%--               <p>${item.getDescription}</p>--%>
+<%--               <p>${item.getSupplier}</p>--%>
+<%--               <p>${item.getCategory}</p>--%>
+<%--               <p>${item.getQuantity_in_stock}</p>--%>
+<%--               <p>${item.getCreated_at}</p>--%>
+<%--               <img src="${item.getImage}">--%>
+<%--           </c:forEach>--%>
+        </div>
     </div>
   </div>
 </section>
@@ -88,6 +149,21 @@
       MenuItems.style.maxHeight="0px";
     }
   }
+</script>
+
+<script>
+    function chooseFile() {
+        document.getElementById("avatarInput").click();
+    }
+
+    document.getElementById("avatarInput").addEventListener("change", function(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById("avatar").src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
 </script>
 
 </body>

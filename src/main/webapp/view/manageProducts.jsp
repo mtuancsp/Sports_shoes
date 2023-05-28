@@ -53,6 +53,13 @@
             pointer-events: none;
             cursor: default;
         }
+        .edit:hover{
+            background-color: green;
+        }
+        .delete:hover{
+            background-color: red;
+            font-weight: bold;
+        }
     </style>
 
 
@@ -78,8 +85,8 @@
                 </div>
                 <p>$${product.price}</p>
                 <div>
-                    <a class="btn" href="/view/edit?id=${product.product_id}">Edit</a>
-                    <a class="btn" href="/view/delete?id=${product.product_id}">Delete</a>
+                    <a class="btn edit" href="/view/edit?id=${product.product_id}">Edit</a>
+                    <a class="btn delete" href="/view/delete?id=${product.product_id}">Delete</a>
                 </div>
             </div>
         </c:forEach>

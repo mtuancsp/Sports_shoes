@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
         Users user = new Users(username, password, phone, email, full_name);
         UserDAO dao = new UserDAO();
         try {
-            String message = dao.insertUser(user);
+            String message = dao.registerUser(user);
             request.setAttribute("message", message);
             request.getRequestDispatcher("account.jsp").forward(request, response);
         } catch (SQLException e) {

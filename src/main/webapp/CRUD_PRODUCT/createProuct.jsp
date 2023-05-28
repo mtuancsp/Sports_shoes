@@ -24,7 +24,7 @@
             <tr>
                 <th>ProductName</th>
                 <td>
-                    <input type="text" name="productName" id="producName" size="45"/>
+                    <input type="text" name="productName" id="productName" size="45"/>
                 </td>
             </tr>
             <tr>

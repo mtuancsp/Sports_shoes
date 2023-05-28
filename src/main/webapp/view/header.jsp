@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <style>
+    .header {
+        background: radial-gradient(#fff, #ffd6d6);
+    }
     .dropdown {
         position: relative;
     }
@@ -28,7 +31,7 @@
             <div class="logo">
                 <a href="view/home" style="position: relative; top: 5px"><img src="images/c02team2.png" width="120px"></a>
             </div>
-            <nav>
+            <nav style="">
                 <ul id="MenuItems">
                     <li><a href="home">Home</a></li>
                     <li><a href="listProduct">Products</a></li>
@@ -37,7 +40,7 @@
                         <li class="dropdown">
                             <a href="#">Manage</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Products</a></li>
+                                <li><a href="/view/manageProducts">Products</a></li>
                                 <li><a href="#">Accounts</a></li>
                             </ul>
                         </li>
